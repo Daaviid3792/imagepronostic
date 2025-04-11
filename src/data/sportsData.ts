@@ -1,4 +1,3 @@
-
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -570,57 +569,4 @@ const competitions: CompetitionData[] = [
   {
     id: "premier-league",
     name: "Premier League",
-    logo: "/lovable-uploads/a5f068a6-2d5e-4d28-ae9b-1446a37d4c0a.png"
-  },
-  {
-    id: "serie-a",
-    name: "Serie A",
-    logo: "/lovable-uploads/22967fd5-b99e-4a09-b25e-bf79873fd02c.png"
-  },
-  {
-    id: "bundesliga",
-    name: "Bundesliga",
-    logo: "/lovable-uploads/b78f5f7c-9e55-4457-8776-d807131a8966.png"
-  },
-  {
-    id: "ligue-1",
-    name: "Ligue 1",
-    logo: "/lovable-uploads/0818ccf2-c294-4abd-b099-00995a37dde9.png"
-  },
-  {
-    id: "champions-league",
-    name: "UEFA Champions League",
-    logo: "/lovable-uploads/dc273170-2df7-4385-82b6-5240b0bafd59.png"
-  },
-  {
-    id: "europa-league",
-    name: "UEFA Europa League",
-    logo: "/lovable-uploads/a8113cb9-eee6-42c1-b942-022ba71049fd.png"
-  },
-  {
-    id: "libertadores",
-    name: "Copa Libertadores",
-    logo: "/lovable-uploads/a212f979-e598-407c-b70c-08be8b6af25b.png"
-  },
-  {
-    id: "sudamericana",
-    name: "Copa Sudamericana",
-    logo: "/lovable-uploads/53a07a92-30fa-470d-baec-f2680e680720.png"
-  }
-];
-
-export const getTeamById = (id: string): TeamData | undefined => {
-  return teams.find(team => team.id === id);
-};
-
-export const getCompetitionById = (id: string): CompetitionData | undefined => {
-  return competitions.find(competition => competition.id === id);
-};
-
-export const getAllTeams = (): TeamData[] => {
-  return [...teams];
-};
-
-export const getAllCompetitions = (): CompetitionData[] => {
-  return [...competitions];
-};
+    logo: "/lovable-uploads/a5f068a6-2d5e-4d28-ae9b-1446a37d
