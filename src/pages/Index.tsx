@@ -86,7 +86,7 @@ const Index = () => {
       <Header />
       <main className="container mx-auto py-8 px-4">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-          Creador de Imágenes de Partidos de Fútbol
+          Creador de Imágenes de Pronósticos de Fútbol
         </h1>
         
         <Card className="max-w-4xl mx-auto bg-[#222] border-gray-700">

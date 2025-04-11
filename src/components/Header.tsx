@@ -12,28 +12,9 @@ const Header = () => {
             className="text-white text-xl md:text-2xl font-bold cursor-pointer" 
             onClick={() => navigate("/")}
           >
-            Image Arena Creator
+            Imágenes de pronósticos
           </h1>
         </div>
-        <nav className="hidden md:block">
-          <ul className="flex space-x-6">
-            <li>
-              <a href="/" className="text-gray-300 hover:text-white transition-colors">
-                Inicio
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                Galería
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                Ayuda
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </header>
   );

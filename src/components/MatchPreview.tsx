@@ -109,37 +109,37 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
           </div>
         </div>
         
-        <div className="flex justify-center items-center gap-4 md:gap-16 py-4">
-          {/* Home team - better centered */}
+        <div className="flex justify-center items-center gap-4 md:gap-24 py-4">
+          {/* Home team - better centered and enlarged */}
           <div className="flex flex-col items-center justify-center w-1/3">
             {homeTeam && (
               <>
-                <div className="flex justify-center items-center h-32 md:h-44">
+                <div className="flex justify-center items-center h-36 md:h-52">
                   <img 
                     src={homeTeam.logo} 
                     alt={homeTeam.name} 
-                    className="h-28 md:h-40 object-contain" 
+                    className="h-32 md:h-44 object-contain" 
                   />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-center mt-1">{homeTeam.name}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-center mt-2">{homeTeam.name}</h3>
               </>
             )}
           </div>
           
           <div className="w-1/3"></div> {/* Center space */}
           
-          {/* Away team - better centered */}
+          {/* Away team - better centered and enlarged */}
           <div className="flex flex-col items-center justify-center w-1/3">
             {awayTeam && (
               <>
-                <div className="flex justify-center items-center h-32 md:h-44">
+                <div className="flex justify-center items-center h-36 md:h-52">
                   <img 
                     src={awayTeam.logo} 
                     alt={awayTeam.name} 
-                    className="h-28 md:h-40 object-contain" 
+                    className="h-32 md:h-44 object-contain" 
                   />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-center mt-1">{awayTeam.name}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-center mt-2">{awayTeam.name}</h3>
               </>
             )}
           </div>
