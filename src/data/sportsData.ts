@@ -1,4 +1,3 @@
-
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -183,6 +182,78 @@ const teams: TeamData[] = [
     id: "millwall",
     name: "MILLWALL FC",
     logo: "/lovable-uploads/5e259bed-a3f1-41de-b2c0-ff6c452e69a1.png"
+  },
+  // New English teams
+  {
+    id: "preston-north-end",
+    name: "PRESTON NORTH END FC",
+    logo: "/lovable-uploads/c4296ae2-7ed9-4633-96e8-ce09efc2816f.png"
+  },
+  {
+    id: "queens-park-rangers",
+    name: "QUEENS PARK RANGERS",
+    logo: "/lovable-uploads/cfba6910-4234-4b23-9f7d-4f1811265b62.png"
+  },
+  {
+    id: "sheffield-united",
+    name: "SHEFFIELD UNITED FC",
+    logo: "/lovable-uploads/e93dcd10-0522-41c4-905f-9d61dcccd71e.png"
+  },
+  {
+    id: "sheffield-wednesday",
+    name: "SHEFFIELD WEDNESDAY",
+    logo: "/lovable-uploads/72f62782-5df5-4365-a412-942bc9ccda62.png"
+  },
+  {
+    id: "stoke-city",
+    name: "STOKE CITY FC",
+    logo: "/lovable-uploads/7f98a324-4fdf-442e-a783-19dc5452f9fe.png"
+  },
+  {
+    id: "sunderland",
+    name: "SUNDERLAND AFC",
+    logo: "/lovable-uploads/652f492d-0f39-4442-8fc0-74bc80569020.png"
+  },
+  {
+    id: "swansea-city",
+    name: "SWANSEA CITY AFC",
+    logo: "/lovable-uploads/2b84ce47-b3cc-4295-bdd0-22923147d2b9.png"
+  },
+  {
+    id: "watford",
+    name: "WATFORD FC",
+    logo: "/lovable-uploads/60613db6-3c2b-4be1-a602-2403694ef158.png"
+  },
+  {
+    id: "west-bromwich",
+    name: "WEST BROMWICH ALBION",
+    logo: "/lovable-uploads/e041b7ec-e5ff-4299-a595-2643f1987106.png"
+  },
+  // Premier League teams
+  {
+    id: "arsenal",
+    name: "ARSENAL",
+    logo: "/lovable-uploads/fe2c14a7-22df-461d-81f9-3d9b58564d1a.png"
+  },
+  {
+    id: "aston-villa",
+    name: "ASTON VILLA FC",
+    logo: "/lovable-uploads/e41078a5-bcbf-46fe-9580-097a57b8b67d.png"
+  },
+  {
+    id: "bournemouth",
+    name: "AFC BOURNEMOUTH",
+    logo: "/lovable-uploads/7957ab4e-3f3c-4761-b805-936bc4dc554e.png"
+  },
+  {
+    id: "brentford",
+    name: "BRENTFORD FC",
+    logo: "/lovable-uploads/8215fc6f-4e3d-4106-bb46-fc859f68bac7.png"
+  },
+  {
+    id: "brighton",
+    name: "BRIGHTON & HOVE ALBION",
+    logo: "/lovable-uploads/3f028924-6554-4ba5-850f-f753e3837840.png"
   }
 ];
 
