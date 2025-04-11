@@ -1,4 +1,3 @@
-
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -6,37 +5,37 @@ const teams: TeamData[] = [
   {
     id: "real-madrid",
     name: "REAL MADRID CF",
-    logo: "/lovable-uploads/d1bb3c7d-7561-45ac-9372-fc8e5e1f181f.png"
+    logo: "/lovable-uploads/2f231387-ba14-41a6-87e6-c3e47ecd02bc.png"
   },
   {
     id: "osasuna",
     name: "CA OSASUNA",
-    logo: "/lovable-uploads/6dac6242-8ed8-419c-9369-5a30deabc68e.png"
+    logo: "/lovable-uploads/12c01ee0-1014-4fcd-ae51-6a046113e868.png"
   },
   {
     id: "rayo-vallecano",
     name: "RAYO VALLECANO",
-    logo: "/lovable-uploads/f102c84e-6227-424b-8e0b-c4889d0a34a1.png"
+    logo: "/lovable-uploads/bafd904f-e65b-40e1-a81c-6e20686337a9.png"
   },
   {
     id: "real-sociedad",
     name: "REAL SOCIEDAD",
-    logo: "/lovable-uploads/a028f63c-ed76-4719-a049-65fff816c947.png"
+    logo: "/lovable-uploads/17839ba2-b6b5-4a29-9d20-bfd9d0873bbb.png"
   },
   {
     id: "sevilla",
     name: "SEVILLA FC",
-    logo: "/lovable-uploads/a293a021-3d60-4768-9e45-6bdba65928b5.png"
+    logo: "/lovable-uploads/6113cdc7-b377-4183-b400-05fa71fdb3d8.png"
   },
   {
     id: "valencia",
     name: "VALENCIA CF",
-    logo: "/lovable-uploads/0d8d7a24-ab71-48a0-a42a-48a2e841b1a3.png"
+    logo: "/lovable-uploads/e6fcb280-491c-4040-aea4-a7343673f2fe.png"
   },
   {
     id: "valladolid",
     name: "REAL VALLADOLID CF",
-    logo: "/lovable-uploads/cb8c586f-c72b-450f-9659-966755f59429.png"
+    logo: "/lovable-uploads/48bdd554-4694-4cbb-b76a-01286becad77.png"
   },
   {
     id: "central-cordoba",
