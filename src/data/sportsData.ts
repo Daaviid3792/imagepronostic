@@ -1,4 +1,3 @@
-
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -113,7 +112,6 @@ const teams: TeamData[] = [
     name: "COLO-COLO",
     logo: "/lovable-uploads/96467229-90b4-47ba-bb76-e2d55e3f95de.png"
   },
-  // New teams added from the latest batch
   {
     id: "universidad-chile",
     name: "UNIVERSIDAD DE CHILE",
@@ -184,7 +182,6 @@ const teams: TeamData[] = [
     name: "MILLWALL FC",
     logo: "/lovable-uploads/5e259bed-a3f1-41de-b2c0-ff6c452e69a1.png"
   },
-  // New English teams
   {
     id: "preston-north-end",
     name: "PRESTON NORTH END FC",
@@ -230,7 +227,6 @@ const teams: TeamData[] = [
     name: "WEST BROMWICH ALBION",
     logo: "/lovable-uploads/e041b7ec-e5ff-4299-a595-2643f1987106.png"
   },
-  // Premier League teams
   {
     id: "arsenal",
     name: "ARSENAL",
@@ -256,7 +252,6 @@ const teams: TeamData[] = [
     name: "BRIGHTON & HOVE ALBION",
     logo: "/lovable-uploads/3f028924-6554-4ba5-850f-f753e3837840.png"
   },
-  // New Premier League teams
   {
     id: "chelsea",
     name: "CHELSEA FC",
@@ -327,7 +322,6 @@ const teams: TeamData[] = [
     name: "WEST HAM UNITED FC",
     logo: "/lovable-uploads/6ec4844f-49f5-445b-814c-6f29ad7a35e5.png"
   },
-  // LaLiga teams
   {
     id: "athletic-bilbao",
     name: "ATHLETIC CLUB BILBAO",
@@ -397,6 +391,76 @@ const teams: TeamData[] = [
     id: "wolves",
     name: "WOLVERHAMPTON WANDERERS",
     logo: "/lovable-uploads/6ffacc14-fb58-4ea7-ac74-66ab654e7c3b.png"
+  },
+  {
+    id: "fc-cartagena",
+    name: "FC CARTAGENA",
+    logo: "/lovable-uploads/c2a52879-809b-4d89-b68b-777329817bc2.png"
+  },
+  {
+    id: "cd-castellon",
+    name: "CD CASTELLÓN",
+    logo: "/lovable-uploads/9dcfbaef-1e00-4f18-af50-e230aa206920.png"
+  },
+  {
+    id: "nastic-tarragona",
+    name: "NÀSTIC DE TARRAGONA",
+    logo: "/lovable-uploads/bde3037c-4cf1-4815-a1c5-e74e6e435078.png"
+  },
+  {
+    id: "deportivo-la-coruna",
+    name: "DEPORTIVO LA CORUÑA",
+    logo: "/lovable-uploads/85668405-2bd6-4e06-b887-c981bfac280c.png"
+  },
+  {
+    id: "sd-eibar",
+    name: "SD EIBAR",
+    logo: "/lovable-uploads/6442a052-ee1a-4665-9f87-7d332f23fa25.png"
+  },
+  {
+    id: "elche-cf",
+    name: "ELCHE CF",
+    logo: "/lovable-uploads/6fe44b6f-6435-4f3b-a9f6-159f5ef6a358.png"
+  },
+  {
+    id: "cd-eldense",
+    name: "CD ELDENSE",
+    logo: "/lovable-uploads/fb02e754-5064-49ca-84b0-3a88f299c39a.png"
+  },
+  {
+    id: "granada-cf",
+    name: "GRANADA CF",
+    logo: "/lovable-uploads/a1c8c05e-dbfd-425d-82a1-efce62a07e0f.png"
+  },
+  {
+    id: "sd-huesca",
+    name: "SD HUESCA",
+    logo: "/lovable-uploads/253dcdde-51ec-4166-8821-38b919515a4f.png"
+  },
+  {
+    id: "levante-ud",
+    name: "LEVANTE UD",
+    logo: "/lovable-uploads/887b31fd-84b7-47a8-b1e7-5f02b10f163a.png"
+  },
+  {
+    id: "malaga-cf",
+    name: "MÁLAGA CF",
+    logo: "/lovable-uploads/854183a3-b4a1-4b8e-bad5-e3a111015718.png"
+  },
+  {
+    id: "cd-mirandes",
+    name: "CD MIRANDÉS",
+    logo: "/lovable-uploads/4b459525-f734-4ccf-a9ca-d0e51399d0c1.png"
+  },
+  {
+    id: "racing-ferrol",
+    name: "RACING CLUB FERROL",
+    logo: "/lovable-uploads/0d9a1d7e-3fad-499f-948e-e9935cdee1a2.png"
+  },
+  {
+    id: "racing-santander",
+    name: "REAL RACING CLUB",
+    logo: "/lovable-uploads/ccafcfc9-fd7f-4899-b9fa-2d5e389ee30e.png"
   }
 ];
 
