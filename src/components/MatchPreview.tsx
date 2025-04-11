@@ -21,7 +21,7 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
           {/* Competición logo */}
           {competition && (
             <div className="competition-logo">
-              <img src={competition.logo} alt={competition.name} className="h-full" />
+              <img src={competition.logo} alt={competition.name} className="h-full max-h-20 object-contain" />
             </div>
           )}
           
