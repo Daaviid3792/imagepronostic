@@ -18,12 +18,25 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
     <div className="w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
       {/* Imagen de fondo actualizada */}
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-100"
-        style={{ backgroundImage: `url('/lovable-uploads/43c3ff17-de45-45a4-8528-18b420681f46.png')` }}
+        className="absolute inset-0 bg-cover bg-center z-0"
+        style={{ 
+          backgroundImage: `url('/lovable-uploads/43c3ff17-de45-45a4-8528-18b420681f46.png')`,
+          backgroundSize: 'cover'
+        }}
       ></div>
       
-      {/* Gradiente oscuro por encima de la imagen - reducido para permitir mejor visualización de la imagen */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/10 to-gray-900/30 z-0"></div>
+      {/* Efecto de gradiente para mejorar contraste */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40 z-0"></div>
+      
+      {/* Efecto de resplandor */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_70%)] z-0"></div>
+      
+      {/* Textura sutil */}
+      <div className="absolute inset-0 opacity-10 z-0" 
+        style={{ 
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}
+      ></div>
       
       {/* Contenido */}
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-8">
@@ -53,9 +66,9 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
                 <img 
                   src={homeTeam.logo} 
                   alt={homeTeam.name} 
-                  className="h-28 md:h-36 object-contain mb-4" 
+                  className="h-28 md:h-36 object-contain mb-4 drop-shadow-lg" 
                 />
-                <h3 className="text-lg md:text-xl font-bold text-center">{homeTeam.name}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-center drop-shadow-md">{homeTeam.name}</h3>
               </>
             )}
           </div>
@@ -69,9 +82,9 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
                 <img 
                   src={awayTeam.logo} 
                   alt={awayTeam.name} 
-                  className="h-28 md:h-36 object-contain mb-4" 
+                  className="h-28 md:h-36 object-contain mb-4 drop-shadow-lg" 
                 />
-                <h3 className="text-lg md:text-xl font-bold text-center">{awayTeam.name}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-center drop-shadow-md">{awayTeam.name}</h3>
               </>
             )}
           </div>
