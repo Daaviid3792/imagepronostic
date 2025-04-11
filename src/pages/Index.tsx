@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
@@ -7,6 +7,8 @@ import MatchCreator from "@/components/MatchCreator";
 import MatchPreview from "@/components/MatchPreview";
 import { toast } from "sonner";
 import { MatchData } from "@/types/match";
+import { getTeamById } from "@/data/sportsData";
+import html2canvas from "html2canvas";
 
 const Index = () => {
   const [matchData, setMatchData] = useState<MatchData>({
@@ -17,6 +19,8 @@ const Index = () => {
   });
   
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [showLive, setShowLive] = useState(false);
+  const previewRef = useRef<HTMLDivElement>(null);
 
   const handlePreviewClick = () => {
     if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
@@ -28,11 +32,53 @@ const Index = () => {
 
   const handleBackToEdit = () => {
     setPreviewVisible(false);
+    setShowLive(false);
   };
 
-  const handleDownload = () => {
-    toast.success("Imagen descargada correctamente");
-    // La funcionalidad de descarga se implementará en una versión posterior
+  const handleToggleLive = () => {
+    setShowLive(!showLive);
+  };
+
+  const handleDownload = async () => {
+    if (!previewRef.current) return;
+
+    try {
+      const homeTeam = getTeamById(matchData.homeTeam);
+      const awayTeam = getTeamById(matchData.awayTeam);
+      
+      if (!homeTeam || !awayTeam) {
+        toast.error("Error al obtener información de los equipos");
+        return;
+      }
+
+      const fileName = `${homeTeam.name}-${awayTeam.name}.webp`;
+      
+      const canvas = await html2canvas(previewRef.current, {
+        backgroundColor: null,
+        scale: 2, // mejor calidad
+      });
+      
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = fileName;
+            link.click();
+            URL.revokeObjectURL(url);
+            toast.success("Imagen descargada correctamente");
+          } else {
+            toast.error("Error al generar la imagen");
+          }
+        },
+        "image/webp",
+        0.9
+      ); // 0.9 = 90% de calidad
+    } catch (error) {
+      console.error("Error al descargar la imagen:", error);
+      toast.error("Error al descargar la imagen");
+    }
   };
 
   return (
@@ -62,8 +108,10 @@ const Index = () => {
               </>
             ) : (
               <>
-                <MatchPreview matchData={matchData} />
-                <div className="mt-8 flex justify-center gap-4">
+                <div ref={previewRef}>
+                  <MatchPreview matchData={matchData} showLive={showLive} />
+                </div>
+                <div className="mt-8 flex flex-wrap justify-center gap-4">
                   <Button 
                     onClick={handleBackToEdit}
                     variant="outline"
@@ -76,6 +124,14 @@ const Index = () => {
                     className="bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     Descargar Imagen
+                  </Button>
+                  <Button 
+                    onClick={handleToggleLive}
+                    className={`${
+                      showLive ? "bg-red-600 hover:bg-red-700" : "bg-gray-600 hover:bg-gray-700"
+                    } text-white`}
+                  >
+                    {showLive ? "Quitar Live" : "Añadir Live"}
                   </Button>
                 </div>
               </>
