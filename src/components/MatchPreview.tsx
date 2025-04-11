@@ -19,11 +19,8 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
       {/* Imagen de fondo actualizada */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0 opacity-100"
-        style={{ backgroundImage: `url('/lovable-uploads/43c3ff17-de45-45a4-8528-18b420681f46.png')` }}
+        style={{ backgroundImage: `url('/lovable-uploads/d5354129-c8d8-44f0-8c26-18c60a12a46e.png')` }}
       ></div>
-      
-      {/* Gradiente oscuro por encima de la imagen - reducido para permitir mejor visualización de la imagen */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/10 to-gray-900/30 z-0"></div>
       
       {/* Contenido */}
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-8">
