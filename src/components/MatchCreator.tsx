@@ -10,7 +10,7 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { MatchData, TeamData, CompetitionData } from "@/types/match";
-import { getTeams, getCompetitions } from "@/data/sportsData";
+import { getAllTeams, getAllCompetitions } from "@/data/sportsData";
 
 interface MatchCreatorProps {
   matchData: MatchData;
@@ -22,8 +22,8 @@ const MatchCreator = ({ matchData, setMatchData }: MatchCreatorProps) => {
   const [competitions, setCompetitions] = useState<CompetitionData[]>([]);
 
   useEffect(() => {
-    setTeams(getTeams());
-    setCompetitions(getCompetitions());
+    setTeams(getAllTeams());
+    setCompetitions(getAllCompetitions());
   }, []);
 
   return (
