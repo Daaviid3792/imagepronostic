@@ -1,3 +1,4 @@
+
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -470,7 +471,7 @@ const teams: TeamData[] = [
   {
     id: "tenerife",
     name: "CD TENERIFE",
-    logo: "/lovable-uploads/c19a3485-404c-4122-be6d-5dfa2b5887b0.png" // Corregido logo duplicado
+    logo: "/lovable-uploads/c19a3485-404c-4122-be6d-5dfa2b5887b0.png"
   },
   {
     id: "ud-las-palmas",
@@ -548,11 +549,6 @@ const teams: TeamData[] = [
     logo: "/lovable-uploads/a45eb0fa-5b5d-4603-8b64-0c2700b66b7c.png"
   },
   {
-    id: "real-sociedad",
-    name: "REAL SOCIEDAD",
-    logo: "/lovable-uploads/6e1b7f31-b8ba-42cb-8215-61e1a9b931b6.png"
-  },
-  {
     id: "as-roma",
     name: "AS ROMA",
     logo: "/lovable-uploads/940cd1fc-c811-42d9-aaf3-c79ec850db68.png"
@@ -569,4 +565,62 @@ const competitions: CompetitionData[] = [
   {
     id: "la-liga",
     name: "LaLiga EA Sports",
-    logo: "/lovable-uploads/69b96579-41ec-49ef
+    logo: "/lovable-uploads/69b96579-41ec-49ef-acbe-2a481ff97d10.png"
+  },
+  {
+    id: "premier-league",
+    name: "Premier League",
+    logo: "/lovable-uploads/a5f068a6-2d5e-4d28-ae9b-1446a37d4c0a.png"
+  },
+  {
+    id: "serie-a",
+    name: "Serie A",
+    logo: "/lovable-uploads/22967fd5-b99e-4a09-b25e-bf79873fd02c.png"
+  },
+  {
+    id: "bundesliga",
+    name: "Bundesliga",
+    logo: "/lovable-uploads/b78f5f7c-9e55-4457-8776-d807131a8966.png"
+  },
+  {
+    id: "ligue-1",
+    name: "Ligue 1",
+    logo: "/lovable-uploads/0818ccf2-c294-4abd-b099-00995a37dde9.png"
+  },
+  {
+    id: "champions-league",
+    name: "UEFA Champions League",
+    logo: "/lovable-uploads/dc273170-2df7-4385-82b6-5240b0bafd59.png"
+  },
+  {
+    id: "europa-league",
+    name: "UEFA Europa League",
+    logo: "/lovable-uploads/a8113cb9-eee6-42c1-b942-022ba71049fd.png"
+  },
+  {
+    id: "libertadores",
+    name: "Copa Libertadores",
+    logo: "/lovable-uploads/a212f979-e598-407c-b70c-08be8b6af25b.png"
+  },
+  {
+    id: "sudamericana",
+    name: "Copa Sudamericana",
+    logo: "/lovable-uploads/53a07a92-30fa-470d-baec-f2680e680720.png"
+  }
+];
+
+export const getTeamById = (id: string): TeamData | undefined => {
+  return teams.find(team => team.id === id);
+};
+
+export const getCompetitionById = (id: string): CompetitionData | undefined => {
+  return competitions.find(competition => competition.id === id);
+};
+
+export const getAllTeams = (): TeamData[] => {
+  return [...teams];
+};
+
+export const getAllCompetitions = (): CompetitionData[] => {
+  return [...competitions];
+};

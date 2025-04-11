@@ -15,8 +15,18 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
   const formattedDate = format(matchData.date, "dd / MM / yyyy");
 
   return (
-    <div className="w-full aspect-video image-arena-bg rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-      <div className="image-arena-content w-full h-full flex flex-col justify-between p-8">
+    <div className="w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
+      {/* Nueva imagen de fondo */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center z-0 opacity-70"
+        style={{ backgroundImage: `url('/lovable-uploads/6d6f8c5e-3333-4ba0-93ac-c87f9e944c8e.png')` }}
+      ></div>
+      
+      {/* Gradiente oscuro por encima de la imagen */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/60 to-gray-900/90 z-0"></div>
+      
+      {/* Contenido */}
+      <div className="relative z-10 w-full h-full flex flex-col justify-between p-8">
         <div className="flex justify-between items-start">
           {/* Competition logo */}
           {competition && (
