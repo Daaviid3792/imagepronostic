@@ -1,3 +1,4 @@
+
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -111,6 +112,77 @@ const teams: TeamData[] = [
     id: "colo-colo",
     name: "COLO-COLO",
     logo: "/lovable-uploads/96467229-90b4-47ba-bb76-e2d55e3f95de.png"
+  },
+  // New teams added from the latest batch
+  {
+    id: "universidad-chile",
+    name: "UNIVERSIDAD DE CHILE",
+    logo: "/lovable-uploads/1fde970c-99c5-419f-af0a-a9068b0ca155.png"
+  },
+  {
+    id: "atletico-bucaramanga",
+    name: "ATLÉTICO BUCARAMANGA",
+    logo: "/lovable-uploads/02867a78-2563-4411-ae54-86600c1a8a27.png"
+  },
+  {
+    id: "atletico-nacional",
+    name: "ATLÉTICO NACIONAL",
+    logo: "/lovable-uploads/de3dcea2-89ad-4da0-90b8-c55e5b8b61b8.png"
+  },
+  {
+    id: "barcelona-sc",
+    name: "BARCELONA SC",
+    logo: "/lovable-uploads/16edeb16-7894-4b33-9346-b8a0ca7c6a27.png"
+  },
+  {
+    id: "independiente",
+    name: "INDEPENDIENTE",
+    logo: "/lovable-uploads/6d678c7e-b548-4dca-ad8c-9b7f20b0294d.png"
+  },
+  {
+    id: "ldu-quito",
+    name: "LDU QUITO",
+    logo: "/lovable-uploads/f81b2a49-63b1-428b-83d1-b9b7f3670bfc.png"
+  },
+  {
+    id: "blackburn",
+    name: "BLACKBURN ROVERS FC",
+    logo: "/lovable-uploads/dc558ab3-dfa0-4ec7-822d-41da00ec6938.png"
+  },
+  {
+    id: "cardiff-city",
+    name: "CARDIFF CITY AFC",
+    logo: "/lovable-uploads/e366a475-c519-4f74-890b-72462338e6ff.png"
+  },
+  {
+    id: "coventry-city",
+    name: "COVENTRY CITY FC",
+    logo: "/lovable-uploads/f3c2a5bb-1eda-4068-bfa4-cb5a9bf06e85.png"
+  },
+  {
+    id: "derby-county",
+    name: "DERBY COUNTY FC",
+    logo: "/lovable-uploads/fd35fa4a-4ba7-4c0a-b54c-e9656f7f34ea.png"
+  },
+  {
+    id: "hull-city",
+    name: "HULL CITY AFC",
+    logo: "/lovable-uploads/b4b49070-133a-4dfd-9e59-c47fecdd491a.png"
+  },
+  {
+    id: "leeds-united",
+    name: "LEEDS UNITED FC",
+    logo: "/lovable-uploads/14b095be-da58-4639-822c-81ce31f8d033.png"
+  },
+  {
+    id: "middlesbrough",
+    name: "MIDDLESBROUGH FC",
+    logo: "/lovable-uploads/e31d8467-421f-445e-b5e2-7c78328d1d8e.png"
+  },
+  {
+    id: "millwall",
+    name: "MILLWALL FC",
+    logo: "/lovable-uploads/5e259bed-a3f1-41de-b2c0-ff6c452e69a1.png"
   }
 ];
 
