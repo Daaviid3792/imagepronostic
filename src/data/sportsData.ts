@@ -1,3 +1,4 @@
+
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -564,47 +565,82 @@ const competitions: CompetitionData[] = [
   {
     id: "la-liga",
     name: "LaLiga EA Sports",
-    logo: "/lovable-uploads/69b96579-41ec-49ef-acbe-2a481ff97d10.png"
+    logo: "/lovable-uploads/575d2d64-1957-49a4-8076-87782639a9c3.png"
+  },
+  {
+    id: "laliga-hypermotion",
+    name: "LaLiga Hypermotion",
+    logo: "/lovable-uploads/7b013ead-60f4-4f35-b6e4-90a5bd61d2d7.png"
   },
   {
     id: "premier-league",
     name: "Premier League",
-    logo: "/lovable-uploads/a5f068a6-2d5e-4d28-ae9b-1446a37d4c0a.png"
+    logo: "/lovable-uploads/87d49609-0526-4603-bd16-0290e4ce6580.png"
   },
   {
     id: "serie-a",
     name: "Serie A",
-    logo: "/lovable-uploads/22967fd5-b99e-4a09-b25e-bf79873fd02c.png"
+    logo: "/lovable-uploads/e773344e-e6c7-48f7-83f5-86fc7aae46d0.png"
   },
   {
     id: "bundesliga",
     name: "Bundesliga",
-    logo: "/lovable-uploads/b78f5f7c-9e55-4457-8776-d807131a8966.png"
-  },
-  {
-    id: "ligue-1",
-    name: "Ligue 1",
-    logo: "/lovable-uploads/0818ccf2-c294-4abd-b099-00995a37dde9.png"
+    logo: "/lovable-uploads/45577002-f200-477f-bddd-556dc68d7c95.png"
   },
   {
     id: "champions-league",
     name: "UEFA Champions League",
-    logo: "/lovable-uploads/dc273170-2df7-4385-82b6-5240b0bafd59.png"
+    logo: "/lovable-uploads/d082cb78-e40b-4955-9814-2f01398881b6.png"
   },
   {
     id: "europa-league",
     name: "UEFA Europa League",
-    logo: "/lovable-uploads/a8113cb9-eee6-42c1-b942-022ba71049fd.png"
+    logo: "/lovable-uploads/55d95375-ea0e-45ab-b8df-130ed4eb3b32.png"
   },
   {
     id: "libertadores",
-    name: "Copa Libertadores",
-    logo: "/lovable-uploads/a212f979-e598-407c-b70c-08be8b6af25b.png"
+    name: "CONMEBOL Libertadores",
+    logo: "/lovable-uploads/b5631d1d-2cf0-4e8f-ac56-d074fa870be6.png"
   },
   {
-    id: "sudamericana",
-    name: "Copa Sudamericana",
-    logo: "/lovable-uploads/53a07a92-30fa-470d-baec-f2680e680720.png"
+    id: "fa-cup",
+    name: "Emirates FA Cup",
+    logo: "/lovable-uploads/e237c904-d178-4474-a515-612ce084e088.png"
+  },
+  {
+    id: "carabao-cup",
+    name: "Carabao Cup",
+    logo: "/lovable-uploads/cfe6a5fe-fb69-4f34-9b2f-5d462d9ee81d.png"
+  },
+  {
+    id: "copa-del-rey",
+    name: "Copa del Rey",
+    logo: "/lovable-uploads/af80b48d-5f64-49cc-9810-be72547dd72d.png"
+  },
+  {
+    id: "coppa-italia",
+    name: "Coppa Italia Frecciarossa",
+    logo: "/lovable-uploads/eb0f93b0-18e4-431a-8bb2-139b66fb7a98.png"
+  },
+  {
+    id: "supercopa-espana",
+    name: "Supercopa de España",
+    logo: "/lovable-uploads/022525db-9477-4583-9db8-601c276fd9de.png"
+  },
+  {
+    id: "supercoppa-italiana",
+    name: "EA Sports Supercup",
+    logo: "/lovable-uploads/71fe4a27-6974-4e94-a624-fb1a0fa4e8fb.png"
+  },
+  {
+    id: "uefa-nations-league",
+    name: "UEFA Nations League",
+    logo: "/lovable-uploads/6a31df4e-b564-4299-beae-1c17604f4880.png"
+  },
+  {
+    id: "fifa-world-cup-qualifiers",
+    name: "FIFA World Cup Qualifiers",
+    logo: "/lovable-uploads/2e3eed36-effa-403b-9bde-31393ca9d638.png"
   }
 ];
 
