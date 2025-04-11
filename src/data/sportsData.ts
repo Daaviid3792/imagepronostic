@@ -6,17 +6,17 @@ const teams: TeamData[] = [
   {
     id: "real-madrid",
     name: "REAL MADRID CF",
-    logo: "/lovable-uploads/e47eba9a-f2a9-465e-8ffc-b65e979e760c.png"
+    logo: "/lovable-uploads/d1bb3c7d-7561-45ac-9372-fc8e5e1f181f.png"
   },
   {
     id: "osasuna",
     name: "CA OSASUNA",
-    logo: "/lovable-uploads/3837ca71-d4bf-4a75-83ea-38e71c82499c.png"
+    logo: "/lovable-uploads/6dac6242-8ed8-419c-9369-5a30deabc68e.png"
   },
   {
     id: "rayo-vallecano",
     name: "RAYO VALLECANO",
-    logo: "/lovable-uploads/48ef7f4c-e938-47ea-a13d-89f94e3228f9.png"
+    logo: "/lovable-uploads/f102c84e-6227-424b-8e0b-c4889d0a34a1.png"
   },
   {
     id: "real-sociedad",
@@ -489,18 +489,13 @@ const teams: TeamData[] = [
     logo: "/lovable-uploads/1a69da3b-cfda-4fe9-a83a-b9c1222becb5.png"
   },
   {
-    id: "ca-osasuna",
-    name: "CA OSASUNA",
-    logo: "/lovable-uploads/6dac6242-8ed8-419c-9369-5a30deabc68e.png"
-  },
-  {
     id: "villarreal",
     name: "VILLARREAL CF",
     logo: "/lovable-uploads/d3f24a3b-2d49-45e9-803d-a80184a0b6cb.png"
   },
   {
     id: "ajax",
-    name: "AJAX AMSTERDAM",
+    name: "AFC AJAX",
     logo: "/lovable-uploads/d7d23e29-c4c7-4458-a2f3-7fa11bb76709.png"
   },
   {
@@ -557,6 +552,11 @@ const teams: TeamData[] = [
     id: "steaua-bucuresti",
     name: "STEAUA BUCUREŞTI",
     logo: "/lovable-uploads/cf208fce-fc65-4d9f-9668-4bf31aa15e17.png"
+  },
+  {
+    id: "zaragoza",
+    name: "REAL ZARAGOZA",
+    logo: "/lovable-uploads/e47eba9a-f2a9-465e-8ffc-b65e979e760c.png"
   }
 ];
 
