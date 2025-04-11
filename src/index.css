@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,57 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#1a1a1a] text-foreground;
   }
+}
+
+.image-arena-bg {
+  background-image: url('/lovable-uploads/6be1146a-9681-48d1-a674-b7ac4b899efb.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.image-arena-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9));
+  z-index: 0;
+}
+
+.image-arena-content {
+  position: relative;
+  z-index: 1;
+}
+
+.vs-text {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 2px;
+  @apply text-4xl md:text-6xl text-gray-400 opacity-80;
+}
+
+.team-name {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 1px;
+  @apply text-xl md:text-3xl text-white uppercase tracking-wider;
+}
+
+.team-logo {
+  @apply w-24 h-24 md:w-36 md:h-36 object-contain mx-auto mb-4;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+}
+
+.competition-logo {
+  @apply h-14 md:h-20 object-contain;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.match-date {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 2px;
+  @apply text-xl md:text-3xl text-white;
 }
