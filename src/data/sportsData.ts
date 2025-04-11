@@ -254,6 +254,77 @@ const teams: TeamData[] = [
     id: "brighton",
     name: "BRIGHTON & HOVE ALBION",
     logo: "/lovable-uploads/3f028924-6554-4ba5-850f-f753e3837840.png"
+  },
+  // New Premier League teams
+  {
+    id: "chelsea",
+    name: "CHELSEA FC",
+    logo: "/lovable-uploads/878cee51-97c6-440c-b7d7-538558f8563e.png"
+  },
+  {
+    id: "everton",
+    name: "EVERTON FC",
+    logo: "/lovable-uploads/40a7ae3e-717b-4f52-babb-a2cf74b2745c.png"
+  },
+  {
+    id: "fulham",
+    name: "FULHAM FC",
+    logo: "/lovable-uploads/a8fc332f-46cc-46bf-a0ba-738a2f78f34c.png"
+  },
+  {
+    id: "ipswich-town",
+    name: "IPSWICH TOWN FC",
+    logo: "/lovable-uploads/f02ac916-b8ac-4fff-ad52-69abca257ebc.png"
+  },
+  {
+    id: "leicester-city",
+    name: "LEICESTER CITY FC",
+    logo: "/lovable-uploads/06ee7aa0-7b3b-47dc-bc4c-a064a7cd77b9.png"
+  },
+  {
+    id: "liverpool",
+    name: "LIVERPOOL FC",
+    logo: "/lovable-uploads/a877d1f6-7482-4e65-9df6-25d2ae24588d.png"
+  },
+  {
+    id: "manchester-city",
+    name: "MANCHESTER CITY FC",
+    logo: "/lovable-uploads/ae92c173-30e9-48b6-923a-45cfaa230aed.png"
+  },
+  {
+    id: "manchester-united",
+    name: "MANCHESTER UNITED FC",
+    logo: "/lovable-uploads/bfb7087e-4abf-4db0-83f9-aeb4a54fbf29.png"
+  },
+  {
+    id: "newcastle-united",
+    name: "NEWCASTLE UNITED FC",
+    logo: "/lovable-uploads/cf75e18c-1274-4ac4-a18e-c68edb8496b5.png"
+  },
+  {
+    id: "nottingham-forest",
+    name: "NOTTINGHAM FOREST FC",
+    logo: "/lovable-uploads/1420f98c-25a0-4d82-8b46-962535394eff.png"
+  },
+  {
+    id: "crystal-palace",
+    name: "CRYSTAL PALACE FC",
+    logo: "/lovable-uploads/a51a4caa-41ac-4a60-837a-6b549b77e6ae.png"
+  },
+  {
+    id: "southampton",
+    name: "SOUTHAMPTON FC",
+    logo: "/lovable-uploads/7309c69d-94df-4cf7-af49-9607380bb044.png"
+  },
+  {
+    id: "tottenham",
+    name: "TOTTENHAM HOTSPUR FC",
+    logo: "/lovable-uploads/a16b6c0d-5ea1-4c68-ab48-f295a4afcb9f.png"
+  },
+  {
+    id: "west-ham",
+    name: "WEST HAM UNITED FC",
+    logo: "/lovable-uploads/6ec4844f-49f5-445b-814c-6f29ad7a35e5.png"
   }
 ];
 
