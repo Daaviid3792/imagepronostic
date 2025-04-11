@@ -31,15 +31,17 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
         <div 
           className="absolute inset-0 z-0 opacity-20"
           style={{ 
-            backgroundImage: `url('public/lovable-uploads/2ccaaf11-72f6-4edd-805f-ca009c44bf9e.png')`,
+            backgroundImage: `url('public/lovable-uploads/765ddb20-005b-4003-a821-25f1dfc55f53.png')`,
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}
         ></div>
         
-        {/* Semicírculos estilizados para simular áreas de fútbol */}
-        <div className="absolute bottom-0 left-0 w-1/4 h-1/2 border-r-[40px] border-t-[40px] rounded-tr-full opacity-10 border-gray-500 z-0"></div>
-        <div className="absolute bottom-0 right-0 w-1/4 h-1/2 border-l-[40px] border-t-[40px] rounded-tl-full opacity-10 border-gray-500 z-0"></div>
+        {/* Área superior derecha */}
+        <div className="absolute top-0 right-0 w-1/3 h-1/2 border-l-[40px] border-b-[40px] rounded-bl-full opacity-15 border-gray-500 z-0"></div>
+        
+        {/* Área inferior izquierda */}
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 border-r-[40px] border-t-[40px] rounded-tr-full opacity-15 border-gray-500 z-0"></div>
         
         {/* Efecto de gradiente para dar profundidad */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1F2C]/40 via-transparent to-[#1A1F2C]/70 z-0"></div>
