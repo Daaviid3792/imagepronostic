@@ -1,4 +1,3 @@
-
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -42,6 +41,76 @@ const teams: TeamData[] = [
     id: "valladolid",
     name: "REAL VALLADOLID",
     logo: "/lovable-uploads/22967fd5-b99e-4a09-b25e-bf79873fd02c.png"
+  },
+  {
+    id: "central-cordoba",
+    name: "CENTRAL CÓRDOBA",
+    logo: "/lovable-uploads/6f62440c-bb09-46f9-8b6a-4a64c25faf25.png"
+  },
+  {
+    id: "estudiantes",
+    name: "ESTUDIANTES DE LA PLATA",
+    logo: "/lovable-uploads/b85913f6-2dab-4920-8150-39e3afdaf76f.png"
+  },
+  {
+    id: "racing-club",
+    name: "RACING CLUB",
+    logo: "/lovable-uploads/a512f96c-830d-4f60-a36a-e72c5331d290.png"
+  },
+  {
+    id: "velez-sarsfield",
+    name: "VÉLEZ SARSFIELD",
+    logo: "/lovable-uploads/001fa7da-25db-4bb3-832d-8c026b9d282e.png"
+  },
+  {
+    id: "bolivar",
+    name: "BOLÍVAR",
+    logo: "/lovable-uploads/dab4c02a-7999-4f6b-ae3c-5067c258269b.png"
+  },
+  {
+    id: "san-antonio",
+    name: "SAN ANTONIO",
+    logo: "/lovable-uploads/bd8ca8ca-e265-41db-a688-763cb843f02f.png"
+  },
+  {
+    id: "bahia",
+    name: "ESPORTE CLUBE BAHIA",
+    logo: "/lovable-uploads/bb4a8e5f-9b85-45f1-9c37-d1a9e097cfcc.png"
+  },
+  {
+    id: "botafogo",
+    name: "BOTAFOGO",
+    logo: "/lovable-uploads/38bdf3e0-dd35-4b1d-bd5d-7a92452abef4.png"
+  },
+  {
+    id: "flamengo",
+    name: "FLAMENGO",
+    logo: "/lovable-uploads/f5dd6ee7-a1ed-435a-97c7-bcec8ad7688d.png"
+  },
+  {
+    id: "fortaleza",
+    name: "FORTALEZA",
+    logo: "/lovable-uploads/21fdfea6-a73a-4d0e-9e8b-ddc292f2e9dd.png"
+  },
+  {
+    id: "internacional",
+    name: "INTERNACIONAL",
+    logo: "/lovable-uploads/76979b0a-7227-45c0-954d-fdaea5391d63.png"
+  },
+  {
+    id: "palmeiras",
+    name: "PALMEIRAS",
+    logo: "/lovable-uploads/c8af9970-c8aa-4dec-9555-fa544f0c3102.png"
+  },
+  {
+    id: "sao-paulo",
+    name: "SÃO PAULO FC",
+    logo: "/lovable-uploads/f53105bf-b6df-4dea-b9f4-6e7809ca116d.png"
+  },
+  {
+    id: "colo-colo",
+    name: "COLO-COLO",
+    logo: "/lovable-uploads/96467229-90b4-47ba-bb76-e2d55e3f95de.png"
   }
 ];
 
