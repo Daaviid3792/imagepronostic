@@ -17,31 +17,44 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
 
   return (
     <div className="w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
-      {/* Imagen de fondo actualizada */}
+      {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0 opacity-100"
         style={{ backgroundImage: `url('/lovable-uploads/d5354129-c8d8-44f0-8c26-18c60a12a46e.png')` }}
       ></div>
       
-      {/* Efecto de campo de fútbol */}
+      {/* Football field effect */}
       <div className="absolute inset-0 z-0">
-        {/* Línea central */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-white/20 transform -translate-x-1/2"></div>
+        {/* Center line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-white/30 transform -translate-x-1/2"></div>
         
-        {/* Círculo central */}
-        <div className="absolute left-1/2 top-1/2 w-24 h-24 rounded-full border-2 border-white/20 transform -translate-x-1/2 -translate-y-1/2"></div>
+        {/* Center circle */}
+        <div className="absolute left-1/2 top-1/2 w-32 h-32 rounded-full border-2 border-white/30 transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute left-1/2 top-1/2 w-3 h-3 bg-white/30 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
         
-        {/* Áreas de portería */}
-        <div className="absolute left-0 bottom-0 w-1/5 h-2/5 border-r-2 border-t-2 border-white/20"></div>
-        <div className="absolute right-0 top-0 w-1/5 h-2/5 border-l-2 border-b-2 border-white/20"></div>
+        {/* Left penalty area - Large */}
+        <div className="absolute left-0 top-1/2 w-1/6 h-2/5 border-r-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
+        {/* Left penalty area - Small */}
+        <div className="absolute left-0 top-1/2 w-[10%] h-1/5 border-r-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
+        {/* Left penalty arc */}
+        <div className="absolute left-[16.67%] top-1/2 w-10 h-20 border-r-2 border-white/30 rounded-l-full transform -translate-x-full -translate-y-1/2"></div>
         
-        {/* VS centrado */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl font-bold text-white/40">
-          VS
+        {/* Right penalty area - Large */}
+        <div className="absolute right-0 top-1/2 w-1/6 h-2/5 border-l-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
+        {/* Right penalty area - Small */}
+        <div className="absolute right-0 top-1/2 w-[10%] h-1/5 border-l-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
+        {/* Right penalty arc */}
+        <div className="absolute right-[16.67%] top-1/2 w-10 h-20 border-l-2 border-white/30 rounded-r-full transform translate-x-full -translate-y-1/2"></div>
+        
+        {/* VS centered - enhanced */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className="text-7xl font-extrabold text-white bg-gray-900/50 px-6 py-3 rounded-lg border-2 border-white/40 shadow-lg">
+            VS
+          </div>
         </div>
       </div>
       
-      {/* Indicador LIVE */}
+      {/* LIVE indicator */}
       {showLive && (
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20">
           <div className="bg-white rounded-full px-6 py-1.5 flex items-center gap-2 border-2 border-red-600">
@@ -51,7 +64,7 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
         </div>
       )}
       
-      {/* Contenido */}
+      {/* Content */}
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-8">
         <div className="flex justify-between items-start">
           {/* Competition logo */}
@@ -65,39 +78,43 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
             </div>
           )}
           
-          {/* Date */}
-          <div className="match-date text-lg font-semibold">
+          {/* Date - enhanced with same format as VS */}
+          <div className="match-date text-xl font-bold bg-gray-900/50 px-4 py-1 rounded-lg border border-white/30">
             {formattedDate}
           </div>
         </div>
         
-        <div className="flex justify-center items-center gap-4 md:gap-12 py-8">
-          {/* Home team */}
-          <div className="flex flex-col items-center w-1/3">
+        <div className="flex justify-center items-center gap-4 md:gap-12 py-4">
+          {/* Home team - better centered */}
+          <div className="flex flex-col items-center justify-center w-1/3">
             {homeTeam && (
               <>
-                <img 
-                  src={homeTeam.logo} 
-                  alt={homeTeam.name} 
-                  className="h-28 md:h-36 object-contain mb-4" 
-                />
-                <h3 className="text-lg md:text-xl font-bold text-center">{homeTeam.name}</h3>
+                <div className="flex justify-center items-center h-32 md:h-40">
+                  <img 
+                    src={homeTeam.logo} 
+                    alt={homeTeam.name} 
+                    className="h-28 md:h-36 object-contain" 
+                  />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-center mt-2">{homeTeam.name}</h3>
               </>
             )}
           </div>
           
-          <div className="w-1/3"></div> {/* Espacio central */}
+          <div className="w-1/3"></div> {/* Center space */}
           
-          {/* Away team */}
-          <div className="flex flex-col items-center w-1/3">
+          {/* Away team - better centered */}
+          <div className="flex flex-col items-center justify-center w-1/3">
             {awayTeam && (
               <>
-                <img 
-                  src={awayTeam.logo} 
-                  alt={awayTeam.name} 
-                  className="h-28 md:h-36 object-contain mb-4" 
-                />
-                <h3 className="text-lg md:text-xl font-bold text-center">{awayTeam.name}</h3>
+                <div className="flex justify-center items-center h-32 md:h-40">
+                  <img 
+                    src={awayTeam.logo} 
+                    alt={awayTeam.name} 
+                    className="h-28 md:h-36 object-contain" 
+                  />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-center mt-2">{awayTeam.name}</h3>
               </>
             )}
           </div>
