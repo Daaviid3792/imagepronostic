@@ -1,3 +1,4 @@
+
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -572,4 +573,45 @@ const teams: TeamData[] = [
 // Competitions
 const competitions: CompetitionData[] = [
   {
-    id
+    id: "la-liga",
+    name: "LaLiga EA Sports",
+    logo: "/lovable-uploads/69b96579-41ec-49ef-acbe-2a481ff97d10.png"
+  },
+  {
+    id: "premier-league",
+    name: "Premier League",
+    logo: "/lovable-uploads/41648b76-84ee-4983-b7f3-14829239bc87.png"
+  },
+  {
+    id: "champions-league",
+    name: "UEFA Champions League",
+    logo: "/lovable-uploads/a2dfe5e7-b042-4969-9b28-7f2ac9a9db34.png"
+  },
+  {
+    id: "copa-del-rey",
+    name: "Copa del Rey",
+    logo: "/lovable-uploads/7b309617-02f6-41f0-9890-83d760a4914a.png"
+  },
+  {
+    id: "fa-cup",
+    name: "FA Cup",
+    logo: "/lovable-uploads/a212f979-e598-407c-b70c-08be8b6af25b.png"
+  }
+];
+
+// Export functions to get teams and competitions
+export const getTeams = (): TeamData[] => {
+  return teams;
+};
+
+export const getCompetitions = (): CompetitionData[] => {
+  return competitions;
+};
+
+export const getTeamById = (id: string): TeamData | undefined => {
+  return teams.find(team => team.id === id);
+};
+
+export const getCompetitionById = (id: string): CompetitionData | undefined => {
+  return competitions.find(competition => competition.id === id);
+};
