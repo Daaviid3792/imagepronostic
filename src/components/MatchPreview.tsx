@@ -15,28 +15,40 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
   const formattedDate = format(matchData.date, "dd / MM / yyyy");
 
   return (
-    <div className="w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
-      {/* Imagen de fondo actualizada */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ 
-          backgroundImage: `url('/lovable-uploads/43c3ff17-de45-45a4-8528-18b420681f46.png')`,
-          backgroundSize: 'cover'
-        }}
-      ></div>
+    <div className="w-full aspect-video rounded-lg overflow-hidden text-white relative">
+      {/* Fondo que simula campo de fútbol */}
+      <div className="absolute inset-0 bg-[#1A1F2C] z-0">
+        {/* Campo de fútbol estilizado con líneas diagonales */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{ 
+            backgroundImage: "linear-gradient(135deg, rgba(50, 55, 65, 0.8) 0%, rgba(25, 28, 36, 0.8) 100%)",
+            backgroundSize: "cover"
+          }}
+        ></div>
+        
+        {/* Líneas del campo simuladas */}
+        <div 
+          className="absolute inset-0 z-0 opacity-20"
+          style={{ 
+            backgroundImage: `url('public/lovable-uploads/2ccaaf11-72f6-4edd-805f-ca009c44bf9e.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        ></div>
+        
+        {/* Semicírculos estilizados para simular áreas de fútbol */}
+        <div className="absolute bottom-0 left-0 w-1/4 h-1/2 border-r-[40px] border-t-[40px] rounded-tr-full opacity-10 border-gray-500 z-0"></div>
+        <div className="absolute bottom-0 right-0 w-1/4 h-1/2 border-l-[40px] border-t-[40px] rounded-tl-full opacity-10 border-gray-500 z-0"></div>
+        
+        {/* Efecto de gradiente para dar profundidad */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1A1F2C]/40 via-transparent to-[#1A1F2C]/70 z-0"></div>
+      </div>
       
-      {/* Efecto de gradiente para mejorar contraste */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40 z-0"></div>
-      
-      {/* Efecto de resplandor */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_70%)] z-0"></div>
-      
-      {/* Textura sutil */}
-      <div className="absolute inset-0 opacity-10 z-0" 
-        style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      ></div>
+      {/* Texto VS en el centro con estilo */}
+      <div className="absolute inset-0 flex items-center justify-center z-0">
+        <span className="text-7xl md:text-8xl font-bold tracking-widest opacity-20 text-gray-400">VS</span>
+      </div>
       
       {/* Contenido */}
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-8">
@@ -73,7 +85,10 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
             )}
           </div>
           
-          {/* El VS ya viene en la imagen de fondo */}
+          {/* Espacio central para el VS */}
+          <div className="w-1/3 flex justify-center items-center">
+            {/* El VS ya está como parte del fondo */}
+          </div>
           
           {/* Away team */}
           <div className="flex flex-col items-center w-1/3">
