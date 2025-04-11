@@ -37,11 +37,27 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
           }}
         ></div>
         
-        {/* Área superior derecha */}
-        <div className="absolute top-0 right-0 w-1/3 h-1/2 border-l-[40px] border-b-[40px] rounded-bl-full opacity-15 border-gray-500 z-0"></div>
+        {/* Área superior derecha - Figura rectangular con semicírculo */}
+        <div className="absolute top-0 right-0 z-0">
+          {/* Rectángulo base */}
+          <div className="w-40 h-52 border-l-2 border-b-2 border-gray-400 opacity-30"></div>
+          {/* Semicírculo */}
+          <div className="absolute top-52 right-0 w-24 h-24 border-l-2 border-t-2 rounded-tl-full border-gray-400 opacity-30"></div>
+        </div>
         
-        {/* Área inferior izquierda */}
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 border-r-[40px] border-t-[40px] rounded-tr-full opacity-15 border-gray-500 z-0"></div>
+        {/* Área inferior izquierda - Figura rectangular con semicírculo */}
+        <div className="absolute bottom-0 left-0 z-0">
+          {/* Rectángulo base */}
+          <div className="w-40 h-52 border-r-2 border-t-2 border-gray-400 opacity-30"></div>
+          {/* Semicírculo */}
+          <div className="absolute bottom-52 left-0 w-24 h-24 border-r-2 border-b-2 rounded-br-full border-gray-400 opacity-30"></div>
+        </div>
+        
+        {/* Círculo central */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full border-2 border-gray-400 opacity-20"></div>
+        
+        {/* Línea media */}
+        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-400 opacity-20 transform -translate-y-1/2"></div>
         
         {/* Efecto de gradiente para dar profundidad */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1F2C]/40 via-transparent to-[#1A1F2C]/70 z-0"></div>
