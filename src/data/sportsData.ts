@@ -1,3 +1,4 @@
+
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
@@ -325,6 +326,77 @@ const teams: TeamData[] = [
     id: "west-ham",
     name: "WEST HAM UNITED FC",
     logo: "/lovable-uploads/6ec4844f-49f5-445b-814c-6f29ad7a35e5.png"
+  },
+  // LaLiga teams
+  {
+    id: "athletic-bilbao",
+    name: "ATHLETIC CLUB BILBAO",
+    logo: "/lovable-uploads/796bff0e-3089-4d46-9f01-291cdf5908b9.png"
+  },
+  {
+    id: "atletico-madrid",
+    name: "ATLÉTICO DE MADRID",
+    logo: "/lovable-uploads/dc273170-2df7-4385-82b6-5240b0bafd59.png"
+  },
+  {
+    id: "barcelona",
+    name: "FC BARCELONA",
+    logo: "/lovable-uploads/d2bf8d55-b9a0-49b6-bc69-538513efc647.png"
+  },
+  {
+    id: "betis",
+    name: "REAL BETIS BALOMPIÉ",
+    logo: "/lovable-uploads/ec6ec7b6-7b07-4b64-a003-490add55a3f4.png"
+  },
+  {
+    id: "celta-vigo",
+    name: "RC CELTA DE VIGO",
+    logo: "/lovable-uploads/ce153ae4-47a6-457d-bf5b-b13000d023c3.png"
+  },
+  {
+    id: "espanyol",
+    name: "RCD ESPANYOL",
+    logo: "/lovable-uploads/dd533563-874b-492a-b652-e2d86f7ffcbf.png"
+  },
+  {
+    id: "getafe",
+    name: "GETAFE C.F.",
+    logo: "/lovable-uploads/9dafbf1e-c275-411f-a0b6-a273f0a53288.png"
+  },
+  {
+    id: "girona",
+    name: "GIRONA FC",
+    logo: "/lovable-uploads/45f7a9b1-4cdf-4ad3-9443-e534545e2658.png"
+  },
+  {
+    id: "albacete",
+    name: "ALBACETE BALOMPIÉ",
+    logo: "/lovable-uploads/eaf87105-4082-4410-80b8-38672370afc9.png"
+  },
+  {
+    id: "almeria",
+    name: "UD ALMERÍA",
+    logo: "/lovable-uploads/a02e41a3-73a9-4af3-b652-c712be93879d.png"
+  },
+  {
+    id: "burgos",
+    name: "BURGOS CF",
+    logo: "/lovable-uploads/cc81b51a-f99d-4e60-8b64-e1516e7b9a5c.png"
+  },
+  {
+    id: "cadiz",
+    name: "CÁDIZ CF",
+    logo: "/lovable-uploads/97dcc491-b646-4a0b-bde9-a39c65f58e07.png"
+  },
+  {
+    id: "alaves",
+    name: "DEPORTIVO ALAVÉS",
+    logo: "/lovable-uploads/91972058-1cda-4a4c-b3b0-2e057117a21c.png"
+  },
+  {
+    id: "wolves",
+    name: "WOLVERHAMPTON WANDERERS",
+    logo: "/lovable-uploads/6ffacc14-fb58-4ea7-ac74-66ab654e7c3b.png"
   }
 ];
 
