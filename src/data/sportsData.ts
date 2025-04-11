@@ -1,7 +1,7 @@
 
 import { TeamData, CompetitionData } from "@/types/match";
 
-// Equipos
+// Teams
 const teams: TeamData[] = [
   {
     id: "real-madrid",
@@ -45,7 +45,7 @@ const teams: TeamData[] = [
   }
 ];
 
-// Competiciones
+// Competitions
 const competitions: CompetitionData[] = [
   {
     id: "laliga",
@@ -129,7 +129,7 @@ const competitions: CompetitionData[] = [
   }
 ];
 
-// Funciones para obtener datos
+// Functions to get data
 export const getTeams = (): TeamData[] => {
   return teams;
 };
