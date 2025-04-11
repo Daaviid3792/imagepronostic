@@ -5,7 +5,7 @@ const teams: TeamData[] = [
   {
     id: "real-madrid",
     name: "REAL MADRID",
-    logo: "/lovable-uploads/41648b76-84ee-4983-b7f3-14829239bc87.png"
+    logo: "/lovable-uploads/e47eba9a-f2a9-465e-8ffc-b65e979e760c.png"
   },
   {
     id: "arsenal",
@@ -20,27 +20,27 @@ const teams: TeamData[] = [
   {
     id: "rayo-vallecano",
     name: "RAYO VALLECANO",
-    logo: "/lovable-uploads/91d655b9-ea36-4397-be78-35e78b977dd7.png"
+    logo: "/lovable-uploads/48ef7f4c-e938-47ea-a13d-89f94e3228f9.png"
   },
   {
     id: "real-sociedad",
     name: "REAL SOCIEDAD",
-    logo: "/lovable-uploads/b21d383b-f03f-4da8-8d51-dd1faafd003a.png"
+    logo: "/lovable-uploads/a028f63c-ed76-4719-a049-65fff816c947.png"
   },
   {
     id: "sevilla",
     name: "SEVILLA FC",
-    logo: "/lovable-uploads/6f4a62f0-cecd-4a25-9d14-375ad139d815.png"
+    logo: "/lovable-uploads/a293a021-3d60-4768-9e45-6bdba65928b5.png"
   },
   {
     id: "valencia",
     name: "VALENCIA CF",
-    logo: "/lovable-uploads/3d9c3a9f-02ee-4dd5-ab9d-ccf9f5e94586.png"
+    logo: "/lovable-uploads/0d8d7a24-ab71-48a0-a42a-48a2e841b1a3.png"
   },
   {
     id: "valladolid",
     name: "REAL VALLADOLID",
-    logo: "/lovable-uploads/22967fd5-b99e-4a09-b25e-bf79873fd02c.png"
+    logo: "/lovable-uploads/cb8c586f-c72b-450f-9659-966755f59429.png"
   },
   {
     id: "central-cordoba",
@@ -330,7 +330,7 @@ const teams: TeamData[] = [
   {
     id: "atletico-madrid",
     name: "ATLÉTICO DE MADRID",
-    logo: "/lovable-uploads/dc273170-2df7-4385-82b6-5240b0bafd59.png"
+    logo: "/lovable-uploads/c2fa529e-98b5-4b4e-aa08-f66dd846782a.png"
   },
   {
     id: "barcelona",
@@ -345,7 +345,7 @@ const teams: TeamData[] = [
   {
     id: "celta-vigo",
     name: "RC CELTA DE VIGO",
-    logo: "/lovable-uploads/ce153ae4-47a6-457d-bf5b-b13000d023c3.png"
+    logo: "/lovable-uploads/c19abce4-726f-4bf6-abb5-ed85740e1412.png"
   },
   {
     id: "espanyol",
@@ -461,6 +461,41 @@ const teams: TeamData[] = [
     id: "racing-santander",
     name: "REAL RACING CLUB",
     logo: "/lovable-uploads/ccafcfc9-fd7f-4899-b9fa-2d5e389ee30e.png"
+  },
+  {
+    id: "real-oviedo",
+    name: "REAL OVIEDO",
+    logo: "/lovable-uploads/6d5b475f-fe8c-435b-81a5-c8da1c0d8c87.png"
+  },
+  {
+    id: "sporting-gijon",
+    name: "SPORTING DE GIJÓN",
+    logo: "/lovable-uploads/76547155-feea-406f-be3e-ea923c864459.png"
+  },
+  {
+    id: "tenerife",
+    name: "CD TENERIFE",
+    logo: "/lovable-uploads/c19abce4-726f-4bf6-abb5-ed85740e1412.png"
+  },
+  {
+    id: "ud-las-palmas",
+    name: "UD LAS PALMAS",
+    logo: "/lovable-uploads/ede88a21-5226-4a62-bebc-9ecd35989b7b.png"
+  },
+  {
+    id: "cd-leganes",
+    name: "CD LEGANÉS",
+    logo: "/lovable-uploads/a6c765b4-9381-4bc8-8283-0e18d958f0e3.png"
+  },
+  {
+    id: "rcd-mallorca",
+    name: "RCD MALLORCA",
+    logo: "/lovable-uploads/1a69da3b-cfda-4fe9-a83a-b9c1222becb5.png"
+  },
+  {
+    id: "ca-osasuna",
+    name: "CA OSASUNA",
+    logo: "/lovable-uploads/6dac6242-8ed8-419c-9369-5a30deabc68e.png"
   }
 ];
 
