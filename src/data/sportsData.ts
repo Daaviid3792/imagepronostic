@@ -1,21 +1,15 @@
-
 import { TeamData, CompetitionData } from "@/types/match";
 
 // Teams
 const teams: TeamData[] = [
   {
     id: "real-madrid",
-    name: "REAL MADRID",
+    name: "REAL MADRID CF",
     logo: "/lovable-uploads/e47eba9a-f2a9-465e-8ffc-b65e979e760c.png"
   },
   {
-    id: "arsenal",
-    name: "ARSENAL",
-    logo: "/lovable-uploads/daf1eb78-92ab-4dfb-878c-67106b7a4dcb.png"
-  },
-  {
     id: "osasuna",
-    name: "OSASUNA",
+    name: "CA OSASUNA",
     logo: "/lovable-uploads/3837ca71-d4bf-4a75-83ea-38e71c82499c.png"
   },
   {
@@ -40,7 +34,7 @@ const teams: TeamData[] = [
   },
   {
     id: "valladolid",
-    name: "REAL VALLADOLID",
+    name: "REAL VALLADOLID CF",
     logo: "/lovable-uploads/cb8c586f-c72b-450f-9659-966755f59429.png"
   },
   {
@@ -65,12 +59,12 @@ const teams: TeamData[] = [
   },
   {
     id: "bolivar",
-    name: "BOLÍVAR",
+    name: "CLUB BOLÍVAR",
     logo: "/lovable-uploads/dab4c02a-7999-4f6b-ae3c-5067c258269b.png"
   },
   {
     id: "san-antonio",
-    name: "SAN ANTONIO",
+    name: "SAN ANTONIO FC",
     logo: "/lovable-uploads/bd8ca8ca-e265-41db-a688-763cb843f02f.png"
   },
   {
@@ -80,27 +74,27 @@ const teams: TeamData[] = [
   },
   {
     id: "botafogo",
-    name: "BOTAFOGO",
+    name: "BOTAFOGO FR",
     logo: "/lovable-uploads/38bdf3e0-dd35-4b1d-bd5d-7a92452abef4.png"
   },
   {
     id: "flamengo",
-    name: "FLAMENGO",
+    name: "CR FLAMENGO",
     logo: "/lovable-uploads/f5dd6ee7-a1ed-435a-97c7-bcec8ad7688d.png"
   },
   {
     id: "fortaleza",
-    name: "FORTALEZA",
+    name: "FORTALEZA EC",
     logo: "/lovable-uploads/21fdfea6-a73a-4d0e-9e8b-ddc292f2e9dd.png"
   },
   {
     id: "internacional",
-    name: "INTERNACIONAL",
+    name: "SC INTERNACIONAL",
     logo: "/lovable-uploads/76979b0a-7227-45c0-954d-fdaea5391d63.png"
   },
   {
     id: "palmeiras",
-    name: "PALMEIRAS",
+    name: "SE PALMEIRAS",
     logo: "/lovable-uploads/c8af9970-c8aa-4dec-9555-fa544f0c3102.png"
   },
   {
@@ -135,7 +129,7 @@ const teams: TeamData[] = [
   },
   {
     id: "independiente",
-    name: "INDEPENDIENTE",
+    name: "CA INDEPENDIENTE",
     logo: "/lovable-uploads/6d678c7e-b548-4dca-ad8c-9b7f20b0294d.png"
   },
   {
@@ -230,7 +224,7 @@ const teams: TeamData[] = [
   },
   {
     id: "arsenal",
-    name: "ARSENAL",
+    name: "ARSENAL FC",
     logo: "/lovable-uploads/fe2c14a7-22df-461d-81f9-3d9b58564d1a.png"
   },
   {
@@ -325,12 +319,12 @@ const teams: TeamData[] = [
   },
   {
     id: "athletic-bilbao",
-    name: "ATHLETIC CLUB BILBAO",
+    name: "ATHLETIC CLUB",
     logo: "/lovable-uploads/796bff0e-3089-4d46-9f01-291cdf5908b9.png"
   },
   {
     id: "atletico-madrid",
-    name: "ATLÉTICO DE MADRID",
+    name: "CLUB ATLÉTICO DE MADRID",
     logo: "/lovable-uploads/c2fa529e-98b5-4b4e-aa08-f66dd846782a.png"
   },
   {
@@ -355,7 +349,7 @@ const teams: TeamData[] = [
   },
   {
     id: "getafe",
-    name: "GETAFE C.F.",
+    name: "GETAFE CF",
     logo: "/lovable-uploads/9dafbf1e-c275-411f-a0b6-a273f0a53288.png"
   },
   {
@@ -405,12 +399,12 @@ const teams: TeamData[] = [
   },
   {
     id: "nastic-tarragona",
-    name: "NÀSTIC DE TARRAGONA",
+    name: "GIMNÀSTIC DE TARRAGONA",
     logo: "/lovable-uploads/bde3037c-4cf1-4815-a1c5-e74e6e435078.png"
   },
   {
     id: "deportivo-la-coruna",
-    name: "DEPORTIVO LA CORUÑA",
+    name: "RC DEPORTIVO DE LA CORUÑA",
     logo: "/lovable-uploads/85668405-2bd6-4e06-b887-c981bfac280c.png"
   },
   {
@@ -470,13 +464,13 @@ const teams: TeamData[] = [
   },
   {
     id: "sporting-gijon",
-    name: "SPORTING DE GIJÓN",
+    name: "REAL SPORTING DE GIJÓN",
     logo: "/lovable-uploads/76547155-feea-406f-be3e-ea923c864459.png"
   },
   {
     id: "tenerife",
     name: "CD TENERIFE",
-    logo: "/lovable-uploads/c19abce4-726f-4bf6-abb5-ed85740e1412.png"
+    logo: "/lovable-uploads/c19a3485-404c-4122-be6d-5dfa2b5887b0.png" // Corregido logo duplicado
   },
   {
     id: "ud-las-palmas",
@@ -575,43 +569,4 @@ const competitions: CompetitionData[] = [
   {
     id: "la-liga",
     name: "LaLiga EA Sports",
-    logo: "/lovable-uploads/69b96579-41ec-49ef-acbe-2a481ff97d10.png"
-  },
-  {
-    id: "premier-league",
-    name: "Premier League",
-    logo: "/lovable-uploads/41648b76-84ee-4983-b7f3-14829239bc87.png"
-  },
-  {
-    id: "champions-league",
-    name: "UEFA Champions League",
-    logo: "/lovable-uploads/a2dfe5e7-b042-4969-9b28-7f2ac9a9db34.png"
-  },
-  {
-    id: "copa-del-rey",
-    name: "Copa del Rey",
-    logo: "/lovable-uploads/7b309617-02f6-41f0-9890-83d760a4914a.png"
-  },
-  {
-    id: "fa-cup",
-    name: "FA Cup",
-    logo: "/lovable-uploads/a212f979-e598-407c-b70c-08be8b6af25b.png"
-  }
-];
-
-// Export functions to get teams and competitions
-export const getTeams = (): TeamData[] => {
-  return teams;
-};
-
-export const getCompetitions = (): CompetitionData[] => {
-  return competitions;
-};
-
-export const getTeamById = (id: string): TeamData | undefined => {
-  return teams.find(team => team.id === id);
-};
-
-export const getCompetitionById = (id: string): CompetitionData | undefined => {
-  return competitions.find(competition => competition.id === id);
-};
+    logo: "/lovable-uploads/69b96579-41ec-49ef
