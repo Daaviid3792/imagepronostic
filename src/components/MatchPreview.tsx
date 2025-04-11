@@ -32,23 +32,48 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
         <div className="absolute left-1/2 top-1/2 w-32 h-32 rounded-full border-2 border-white/30 transform -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute left-1/2 top-1/2 w-3 h-3 bg-white/30 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
         
-        {/* Left penalty area - Large */}
-        <div className="absolute left-0 top-1/2 w-1/6 h-2/5 border-r-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
-        {/* Left penalty area - Small */}
-        <div className="absolute left-0 top-1/2 w-[10%] h-1/5 border-r-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
-        {/* Left penalty arc */}
-        <div className="absolute left-[16.67%] top-1/2 w-10 h-20 border-r-2 border-white/30 rounded-l-full transform -translate-x-full -translate-y-1/2"></div>
+        {/* Field outline */}
+        <div className="absolute inset-2 border-2 border-white/30 rounded-sm"></div>
         
-        {/* Right penalty area - Large */}
-        <div className="absolute right-0 top-1/2 w-1/6 h-2/5 border-l-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
-        {/* Right penalty area - Small */}
-        <div className="absolute right-0 top-1/2 w-[10%] h-1/5 border-l-2 border-t-2 border-b-2 border-white/30 transform -translate-y-1/2"></div>
-        {/* Right penalty arc */}
-        <div className="absolute right-[16.67%] top-1/2 w-10 h-20 border-l-2 border-white/30 rounded-r-full transform translate-x-full -translate-y-1/2"></div>
+        {/* Left penalty area */}
+        <div className="absolute left-0 top-1/2 transform -translate-y-1/2">
+          {/* Large penalty area */}
+          <div className="absolute left-2 top-1/2 w-40 h-80 border-2 border-white/30 transform -translate-y-1/2"></div>
+          
+          {/* Small goal area */}
+          <div className="absolute left-2 top-1/2 w-16 h-40 border-2 border-white/30 transform -translate-y-1/2"></div>
+          
+          {/* Penalty arc */}
+          <div className="absolute left-[166px] top-1/2 w-20 h-40 border-r-2 border-white/30 rounded-r-full transform -translate-y-1/2"></div>
+          
+          {/* Penalty spot */}
+          <div className="absolute left-32 top-1/2 w-2 h-2 bg-white/30 rounded-full transform -translate-y-1/2"></div>
+        </div>
         
-        {/* VS centered - enhanced */}
+        {/* Right penalty area */}
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+          {/* Large penalty area */}
+          <div className="absolute right-2 top-1/2 w-40 h-80 border-2 border-white/30 transform -translate-y-1/2"></div>
+          
+          {/* Small goal area */}
+          <div className="absolute right-2 top-1/2 w-16 h-40 border-2 border-white/30 transform -translate-y-1/2"></div>
+          
+          {/* Penalty arc */}
+          <div className="absolute right-[166px] top-1/2 w-20 h-40 border-l-2 border-white/30 rounded-l-full transform -translate-y-1/2"></div>
+          
+          {/* Penalty spot */}
+          <div className="absolute right-32 top-1/2 w-2 h-2 bg-white/30 rounded-full transform -translate-y-1/2"></div>
+        </div>
+        
+        {/* Corner arcs */}
+        <div className="absolute top-2 left-2 w-6 h-6 border-r-2 border-white/30 rounded-br-full"></div>
+        <div className="absolute top-2 right-2 w-6 h-6 border-l-2 border-white/30 rounded-bl-full"></div>
+        <div className="absolute bottom-2 left-2 w-6 h-6 border-r-2 border-t-2 border-white/30 rounded-tr-full"></div>
+        <div className="absolute bottom-2 right-2 w-6 h-6 border-l-2 border-t-2 border-white/30 rounded-tl-full"></div>
+        
+        {/* VS text - without rectangle */}
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="text-7xl font-extrabold text-white bg-gray-900/50 px-6 py-3 rounded-lg border-2 border-white/40 shadow-lg">
+          <div className="text-7xl font-extrabold text-white shadow-lg">
             VS
           </div>
         </div>
@@ -84,19 +109,19 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
           </div>
         </div>
         
-        <div className="flex justify-center items-center gap-4 md:gap-12 py-4">
+        <div className="flex justify-center items-center gap-4 md:gap-16 py-4">
           {/* Home team - better centered */}
           <div className="flex flex-col items-center justify-center w-1/3">
             {homeTeam && (
               <>
-                <div className="flex justify-center items-center h-32 md:h-40">
+                <div className="flex justify-center items-center h-32 md:h-44">
                   <img 
                     src={homeTeam.logo} 
                     alt={homeTeam.name} 
-                    className="h-28 md:h-36 object-contain" 
+                    className="h-28 md:h-40 object-contain" 
                   />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-center mt-2">{homeTeam.name}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-center mt-1">{homeTeam.name}</h3>
               </>
             )}
           </div>
@@ -107,14 +132,14 @@ const MatchPreview = ({ matchData, showLive = false }: MatchPreviewProps) => {
           <div className="flex flex-col items-center justify-center w-1/3">
             {awayTeam && (
               <>
-                <div className="flex justify-center items-center h-32 md:h-40">
+                <div className="flex justify-center items-center h-32 md:h-44">
                   <img 
                     src={awayTeam.logo} 
                     alt={awayTeam.name} 
-                    className="h-28 md:h-36 object-contain" 
+                    className="h-28 md:h-40 object-contain" 
                   />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-center mt-2">{awayTeam.name}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-center mt-1">{awayTeam.name}</h3>
               </>
             )}
           </div>
