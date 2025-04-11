@@ -16,14 +16,14 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
 
   return (
     <div className="w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
-      {/* Imagen de fondo por defecto */}
+      {/* Imagen de fondo actualizada */}
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-90"
-        style={{ backgroundImage: `url('/lovable-uploads/a283fa78-9222-4726-aeff-933ab4921a6b.png')` }}
+        className="absolute inset-0 bg-cover bg-center z-0 opacity-100"
+        style={{ backgroundImage: `url('/lovable-uploads/43c3ff17-de45-45a4-8528-18b420681f46.png')` }}
       ></div>
       
-      {/* Gradiente oscuro por encima de la imagen */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/30 to-gray-900/60 z-0"></div>
+      {/* Gradiente oscuro por encima de la imagen - reducido para permitir mejor visualización de la imagen */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/10 to-gray-900/30 z-0"></div>
       
       {/* Contenido */}
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-8">
@@ -60,10 +60,7 @@ const MatchPreview = ({ matchData }: MatchPreviewProps) => {
             )}
           </div>
           
-          {/* La imagen de fondo ya contiene el "VS", así que no necesitamos este elemento */}
-          {/* <div className="text-2xl md:text-4xl font-bold">
-            VS
-          </div> */}
+          {/* El VS ya viene en la imagen de fondo */}
           
           {/* Away team */}
           <div className="flex flex-col items-center w-1/3">
