@@ -28,8 +28,11 @@ const Index = () => {
 
   // Parse URL parameters on component mount
   useEffect(() => {
+    console.log("URL search params:", location.search);
     const searchParams = new URLSearchParams(location.search);
     const urlParams = searchParams.get("match");
+    
+    console.log("Parsed match params:", urlParams);
     
     if (urlParams) {
       try {
@@ -38,9 +41,13 @@ const Index = () => {
         const paramString = isLive ? urlParams.slice(0, -5) : urlParams;
         const parts = paramString.split("-");
         
+        console.log("Parts:", parts, "isLive:", isLive);
+        
         if (parts.length >= 2) {
           const homeTeamId = parts[0];
           const awayTeamId = parts[1];
+          
+          console.log("Home team ID:", homeTeamId, "Away team ID:", awayTeamId);
           
           // Date is optional in the URL
           let date = new Date();
@@ -52,6 +59,7 @@ const Index = () => {
               const month = parseInt(dateStr.substring(4, 6)) - 1;
               const day = parseInt(dateStr.substring(6, 8));
               date = new Date(year, month, day);
+              console.log("Parsed date:", date);
             }
           }
           
@@ -59,11 +67,14 @@ const Index = () => {
           const homeTeam = getTeamById(homeTeamId);
           const awayTeam = getTeamById(awayTeamId);
           
+          console.log("Found teams:", homeTeam, awayTeam);
+          
           if (homeTeam && awayTeam) {
             setMatchData(prev => ({
               ...prev,
               homeTeam: homeTeamId,
               awayTeam: awayTeamId,
+              competition: prev.competition || "laliga", // Default to a valid competition if none set
               date
             }));
             
@@ -74,6 +85,8 @@ const Index = () => {
             if (isLive) {
               setShowLive(true);
             }
+          } else {
+            console.error("Invalid team IDs:", homeTeamId, awayTeamId);
           }
         }
       } catch (error) {
@@ -115,6 +128,8 @@ const Index = () => {
       
       // Create the full URL
       const url = `${window.location.origin}${window.location.pathname}?match=${urlParam}`;
+      
+      console.log("Generated share URL:", url);
       
       // Copy to clipboard
       navigator.clipboard.writeText(url).then(() => {
