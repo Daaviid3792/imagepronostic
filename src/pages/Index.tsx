@@ -170,48 +170,41 @@ const Index = () => {
       return;
     }
     
-    const tempDiv = document.createElement('div');
-    tempDiv.style.position = 'fixed';
-    tempDiv.style.left = '-9999px';
-    document.body.appendChild(tempDiv);
-    
     try {
       const homeTeam = getTeamById(matchData.homeTeam);
       const awayTeam = getTeamById(matchData.awayTeam);
       
       if (!homeTeam || !awayTeam) {
         toast.error("Error al obtener información de los equipos");
-        document.body.removeChild(tempDiv);
         return;
       }
       
-      const root = document.createElement('div');
-      root.style.width = '1280px';
-      root.style.height = '720px';
-      tempDiv.appendChild(root);
+      const tempContainer = document.createElement('div');
+      tempContainer.style.width = '1280px';
+      tempContainer.style.height = '720px';
+      tempContainer.style.position = 'fixed';
+      tempContainer.style.left = '-9999px';
+      tempContainer.style.top = '0';
+      document.body.appendChild(tempContainer);
       
-      root.className = "w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative";
+      const clone = previewRef.current?.cloneNode(true) as HTMLElement;
+      if (!clone) {
+        throw new Error("No se pudo clonar el elemento de previsualización");
+      }
       
-      const previewHTML = `
-        <div class="absolute inset-0 bg-cover bg-center z-0 opacity-100" 
-             style="background-image: url('/lovable-uploads/d5354129-c8d8-44f0-8c26-18c60a12a46e.png')"></div>
-        <div class="relative z-10 w-full h-full flex flex-col justify-between p-8">
-          <!-- Match content will be rendered here by the html2canvas -->
-        </div>
-      `;
-      root.innerHTML = previewHTML;
+      clone.style.width = '1280px';
+      clone.style.height = '720px';
+      tempContainer.appendChild(clone);
       
-      const tempPreview = document.createElement('div');
-      tempPreview.style.width = '1280px'; 
-      tempPreview.style.height = '720px';
-      tempDiv.appendChild(tempPreview);
-      
-      tempPreview.innerHTML = `<div id="match-preview-temp"></div>`;
-      
-      const canvas = await html2canvas(previewRef.current || document.createElement('div'), {
+      const canvas = await html2canvas(clone, {
         backgroundColor: null,
         scale: 2,
+        logging: false,
+        useCORS: true,
+        allowTaint: true
       });
+      
+      document.body.removeChild(tempContainer);
       
       canvas.toBlob((blob) => {
         if (blob) {
@@ -225,8 +218,6 @@ const Index = () => {
     } catch (error) {
       console.error("Error al generar imagen para nueva pestaña:", error);
       toast.error("Error al generar la imagen");
-    } finally {
-      document.body.removeChild(tempDiv);
     }
   };
 
@@ -273,6 +264,8 @@ const Index = () => {
       const canvas = await html2canvas(previewRef.current, {
         backgroundColor: null,
         scale: 2,
+        useCORS: true,
+        allowTaint: true
       });
       
       canvas.toBlob(
