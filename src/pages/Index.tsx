@@ -28,17 +28,28 @@ const Index = () => {
 
   // Parse URL parameters on component mount
   useEffect(() => {
-    console.log("URL search params:", location.search);
-    const searchParams = new URLSearchParams(location.search);
-    const urlParams = searchParams.get("match");
+    const params = new URLSearchParams(location.search);
     
-    console.log("Parsed match params:", urlParams);
+    // Método 1: Usar el parámetro "match" (barcelona-realmadrid-20250510-live)
+    const matchParam = params.get("match");
     
-    if (urlParams) {
+    // Método 2: Usar parámetros individuales (home=barcelona&away=realmadrid&live=true)
+    const homeTeamParam = params.get("home");
+    const awayTeamParam = params.get("away");
+    const dateParam = params.get("date");
+    const liveParam = params.get("live") === "true";
+    const competitionParam = params.get("comp") || "laliga";
+    
+    console.log("URL search:", location.search);
+    console.log("Match param:", matchParam);
+    console.log("Individual params:", { homeTeamParam, awayTeamParam, dateParam, liveParam, competitionParam });
+    
+    // Priorizar método 1 (formato match=team1-team2...)
+    if (matchParam) {
       try {
-        // Format should be homeTeam-awayTeam-date with optional -live suffix
-        const isLive = urlParams.endsWith("-live");
-        const paramString = isLive ? urlParams.slice(0, -5) : urlParams;
+        // Verificar si termina con -live
+        const isLive = matchParam.endsWith("-live");
+        const paramString = isLive ? matchParam.slice(0, -5) : matchParam;
         const parts = paramString.split("-");
         
         console.log("Parts:", parts, "isLive:", isLive);
@@ -47,50 +58,68 @@ const Index = () => {
           const homeTeamId = parts[0];
           const awayTeamId = parts[1];
           
-          console.log("Home team ID:", homeTeamId, "Away team ID:", awayTeamId);
-          
-          // Date is optional in the URL
+          // Fecha opcional en la URL
           let date = new Date();
           if (parts.length >= 3) {
             const dateStr = parts[2];
-            // Try to parse date if it looks like YYYYMMDD format
+            // Intentar parsear fecha si tiene formato YYYYMMDD
             if (/^\d{8}$/.test(dateStr)) {
               const year = parseInt(dateStr.substring(0, 4));
-              const month = parseInt(dateStr.substring(4, 6)) - 1;
+              const month = parseInt(dateStr.substring(4, 6)) - 1; // 0-11 en JS
               const day = parseInt(dateStr.substring(6, 8));
               date = new Date(year, month, day);
-              console.log("Parsed date:", date);
             }
           }
           
-          // Update the match data if the team IDs are valid
           const homeTeam = getTeamById(homeTeamId);
           const awayTeam = getTeamById(awayTeamId);
           
           console.log("Found teams:", homeTeam, awayTeam);
           
           if (homeTeam && awayTeam) {
-            setMatchData(prev => ({
-              ...prev,
+            setMatchData({
               homeTeam: homeTeamId,
               awayTeam: awayTeamId,
-              competition: prev.competition || "laliga", // Default to a valid competition if none set
+              competition: competitionParam,
               date
-            }));
-            
-            // If we have valid teams, show preview
+            });
             setPreviewVisible(true);
-            
-            // Set live mode if specified
-            if (isLive) {
-              setShowLive(true);
-            }
+            setShowLive(isLive);
           } else {
             console.error("Invalid team IDs:", homeTeamId, awayTeamId);
           }
         }
       } catch (error) {
-        console.error("Error parsing URL parameters:", error);
+        console.error("Error parsing match parameter:", error);
+      }
+    } 
+    // Usar método 2 si el método 1 falló y existen parámetros individuales
+    else if (homeTeamParam && awayTeamParam) {
+      try {
+        const homeTeam = getTeamById(homeTeamParam);
+        const awayTeam = getTeamById(awayTeamParam);
+        
+        if (homeTeam && awayTeam) {
+          // Parsear la fecha si existe
+          let date = new Date();
+          if (dateParam && /^\d{8}$/.test(dateParam)) {
+            const year = parseInt(dateParam.substring(0, 4));
+            const month = parseInt(dateParam.substring(4, 6)) - 1;
+            const day = parseInt(dateParam.substring(6, 8));
+            date = new Date(year, month, day);
+          }
+          
+          setMatchData({
+            homeTeam: homeTeamParam,
+            awayTeam: awayTeamParam,
+            competition: competitionParam,
+            date
+          });
+          setPreviewVisible(true);
+          setShowLive(liveParam);
+        }
+      } catch (error) {
+        console.error("Error parsing individual parameters:", error);
       }
     }
   }, [location.search]);
@@ -114,26 +143,35 @@ const Index = () => {
 
   const handleShareLink = () => {
     try {
-      // Format the date as YYYYMMDD
+      // Formatear la fecha como YYYYMMDD
       const year = matchData.date.getFullYear();
       const month = String(matchData.date.getMonth() + 1).padStart(2, '0');
       const day = String(matchData.date.getDate()).padStart(2, '0');
       const dateStr = `${year}${month}${day}`;
       
-      // Create URL parameter
+      // Crear dos formatos de URL para compartir
+      
+      // Formato 1: ?match=team1-team2-date(-live)
       let urlParam = `${matchData.homeTeam}-${matchData.awayTeam}-${dateStr}`;
       if (showLive) {
         urlParam += "-live";
       }
+      const matchUrl = `${window.location.origin}${window.location.pathname}?match=${urlParam}`;
       
-      // Create the full URL
-      const url = `${window.location.origin}${window.location.pathname}?match=${urlParam}`;
+      // Formato 2: ?home=team1&away=team2&date=date&live=true/false
+      const paramUrl = new URL(window.location.origin + window.location.pathname);
+      paramUrl.searchParams.append("home", matchData.homeTeam);
+      paramUrl.searchParams.append("away", matchData.awayTeam);
+      paramUrl.searchParams.append("date", dateStr);
+      paramUrl.searchParams.append("comp", matchData.competition);
+      if (showLive) {
+        paramUrl.searchParams.append("live", "true");
+      }
       
-      console.log("Generated share URL:", url);
-      
-      // Copy to clipboard
-      navigator.clipboard.writeText(url).then(() => {
+      // Usar formato 1 (más corto)
+      navigator.clipboard.writeText(matchUrl).then(() => {
         toast.success("Enlace copiado al portapapeles");
+        console.log("Generated URL:", matchUrl);
       }, () => {
         toast.error("No se pudo copiar al portapapeles");
       });
