@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,6 +10,34 @@ import { getTeamById } from "@/data/sportsData";
 import html2canvas from "html2canvas";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Share2 } from "lucide-react";
+
+// URLs predefinidas para partidos comunes
+const PREDEFINED_MATCHES = {
+  "barcelona-realmadrid": {
+    homeTeam: "barcelona",
+    awayTeam: "realmadrid",
+    competition: "laliga",
+    date: new Date(2025, 4, 10) // 10 de Mayo de 2025
+  },
+  "manchestercity-liverpool": {
+    homeTeam: "manchestercity",
+    awayTeam: "liverpool",
+    competition: "premierleague",
+    date: new Date(2025, 4, 15) // 15 de Mayo de 2025
+  },
+  "bayern-dortmund": {
+    homeTeam: "bayern",
+    awayTeam: "dortmund",
+    competition: "bundesliga",
+    date: new Date(2025, 4, 20) // 20 de Mayo de 2025
+  },
+  "psg-marseille": {
+    homeTeam: "psg",
+    awayTeam: "marseille",
+    competition: "ligue1",
+    date: new Date(2025, 4, 25) // 25 de Mayo de 2025
+  }
+};
 
 const Index = () => {
   const [matchData, setMatchData] = useState<MatchData>({
@@ -26,25 +53,33 @@ const Index = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Parse URL parameters on component mount
+  // Parse URL path on component mount
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
+    // Extraer path sin el slash inicial
+    const path = location.pathname.substring(1);
+    console.log("Path detectado:", path);
     
-    // Método 1: Usar el parámetro "match" (barcelona-realmadrid-20250510-live)
+    // Verificar si el path coincide con un partido predefinido
+    if (path && PREDEFINED_MATCHES[path]) {
+      const matchConfig = PREDEFINED_MATCHES[path];
+      console.log("Partido predefinido encontrado:", matchConfig);
+      
+      // Verificar si el path incluye "-live"
+      const isLive = path.endsWith("-live");
+      const pathWithoutLive = isLive ? path.substring(0, path.length - 5) : path;
+      
+      if (PREDEFINED_MATCHES[pathWithoutLive]) {
+        setMatchData(PREDEFINED_MATCHES[pathWithoutLive]);
+        setPreviewVisible(true);
+        setShowLive(isLive);
+        return;
+      }
+    }
+    
+    // Verificar si hay parámetros en la URL como método alternativo
+    const params = new URLSearchParams(location.search);
     const matchParam = params.get("match");
     
-    // Método 2: Usar parámetros individuales (home=barcelona&away=realmadrid&live=true)
-    const homeTeamParam = params.get("home");
-    const awayTeamParam = params.get("away");
-    const dateParam = params.get("date");
-    const liveParam = params.get("live") === "true";
-    const competitionParam = params.get("comp") || "laliga";
-    
-    console.log("URL search:", location.search);
-    console.log("Match param:", matchParam);
-    console.log("Individual params:", { homeTeamParam, awayTeamParam, dateParam, liveParam, competitionParam });
-    
-    // Priorizar método 1 (formato match=team1-team2...)
     if (matchParam) {
       try {
         // Verificar si termina con -live
@@ -52,7 +87,7 @@ const Index = () => {
         const paramString = isLive ? matchParam.slice(0, -5) : matchParam;
         const parts = paramString.split("-");
         
-        console.log("Parts:", parts, "isLive:", isLive);
+        console.log("Parts from URL param:", parts, "isLive:", isLive);
         
         if (parts.length >= 2) {
           const homeTeamId = parts[0];
@@ -80,7 +115,7 @@ const Index = () => {
             setMatchData({
               homeTeam: homeTeamId,
               awayTeam: awayTeamId,
-              competition: competitionParam,
+              competition: params.get("comp") || "laliga",
               date
             });
             setPreviewVisible(true);
@@ -92,37 +127,8 @@ const Index = () => {
       } catch (error) {
         console.error("Error parsing match parameter:", error);
       }
-    } 
-    // Usar método 2 si el método 1 falló y existen parámetros individuales
-    else if (homeTeamParam && awayTeamParam) {
-      try {
-        const homeTeam = getTeamById(homeTeamParam);
-        const awayTeam = getTeamById(awayTeamParam);
-        
-        if (homeTeam && awayTeam) {
-          // Parsear la fecha si existe
-          let date = new Date();
-          if (dateParam && /^\d{8}$/.test(dateParam)) {
-            const year = parseInt(dateParam.substring(0, 4));
-            const month = parseInt(dateParam.substring(4, 6)) - 1;
-            const day = parseInt(dateParam.substring(6, 8));
-            date = new Date(year, month, day);
-          }
-          
-          setMatchData({
-            homeTeam: homeTeamParam,
-            awayTeam: awayTeamParam,
-            competition: competitionParam,
-            date
-          });
-          setPreviewVisible(true);
-          setShowLive(liveParam);
-        }
-      } catch (error) {
-        console.error("Error parsing individual parameters:", error);
-      }
     }
-  }, [location.search]);
+  }, [location]);
 
   const handlePreviewClick = () => {
     if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
@@ -135,6 +141,8 @@ const Index = () => {
   const handleBackToEdit = () => {
     setPreviewVisible(false);
     setShowLive(false);
+    // Limpiar la URL al volver a editar
+    navigate("/", { replace: true });
   };
 
   const handleToggleLive = () => {
@@ -143,35 +151,43 @@ const Index = () => {
 
   const handleShareLink = () => {
     try {
+      // Buscar si hay un partido predefinido que coincida
+      let predefinedMatchKey = null;
+      for (const [key, match] of Object.entries(PREDEFINED_MATCHES)) {
+        if (match.homeTeam === matchData.homeTeam && match.awayTeam === matchData.awayTeam) {
+          predefinedMatchKey = key;
+          break;
+        }
+      }
+      
+      // URL con formato simple si es un partido predefinido
+      if (predefinedMatchKey) {
+        const matchUrl = `${window.location.origin}/${predefinedMatchKey}${showLive ? "-live" : ""}`;
+        navigator.clipboard.writeText(matchUrl).then(() => {
+          toast.success("Enlace copiado al portapapeles");
+          console.log("Generated URL for predefined match:", matchUrl);
+        }, () => {
+          toast.error("No se pudo copiar al portapapeles");
+        });
+        return;
+      }
+      
+      // Fallback al formato antiguo si no es un partido predefinido
       // Formatear la fecha como YYYYMMDD
       const year = matchData.date.getFullYear();
       const month = String(matchData.date.getMonth() + 1).padStart(2, '0');
       const day = String(matchData.date.getDate()).padStart(2, '0');
       const dateStr = `${year}${month}${day}`;
       
-      // Crear dos formatos de URL para compartir
-      
-      // Formato 1: ?match=team1-team2-date(-live)
       let urlParam = `${matchData.homeTeam}-${matchData.awayTeam}-${dateStr}`;
       if (showLive) {
         urlParam += "-live";
       }
-      const matchUrl = `${window.location.origin}${window.location.pathname}?match=${urlParam}`;
+      const matchUrl = `${window.location.origin}?match=${urlParam}`;
       
-      // Formato 2: ?home=team1&away=team2&date=date&live=true/false
-      const paramUrl = new URL(window.location.origin + window.location.pathname);
-      paramUrl.searchParams.append("home", matchData.homeTeam);
-      paramUrl.searchParams.append("away", matchData.awayTeam);
-      paramUrl.searchParams.append("date", dateStr);
-      paramUrl.searchParams.append("comp", matchData.competition);
-      if (showLive) {
-        paramUrl.searchParams.append("live", "true");
-      }
-      
-      // Usar formato 1 (más corto)
       navigator.clipboard.writeText(matchUrl).then(() => {
         toast.success("Enlace copiado al portapapeles");
-        console.log("Generated URL:", matchUrl);
+        console.log("Generated URL with params:", matchUrl);
       }, () => {
         toast.error("No se pudo copiar al portapapeles");
       });

@@ -15,6 +15,14 @@ const Header = () => {
             Imágenes de pronósticos
           </h1>
         </div>
+        <div className="text-sm text-gray-400">
+          <a href="/barcelona-realmadrid" className="hover:text-white mr-4">
+            Barça-Madrid
+          </a>
+          <a href="/manchestercity-liverpool" className="hover:text-white">
+            City-Liverpool
+          </a>
+        </div>
       </div>
     </header>
   );
