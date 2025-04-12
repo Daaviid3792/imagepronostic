@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,7 +10,7 @@ import { MatchData } from "@/types/match";
 import { getTeamById } from "@/data/sportsData";
 import html2canvas from "html2canvas";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Share2 } from "lucide-react";
+import { Share2, ExternalLink } from "lucide-react";
 
 // URLs predefinidas para partidos comunes
 const PREDEFINED_MATCHES = {
@@ -130,12 +131,51 @@ const Index = () => {
     }
   }, [location]);
 
+  const generateMatchUrl = () => {
+    // Buscar si hay un partido predefinido que coincida
+    let predefinedMatchKey = null;
+    for (const [key, match] of Object.entries(PREDEFINED_MATCHES)) {
+      if (match.homeTeam === matchData.homeTeam && match.awayTeam === matchData.awayTeam) {
+        predefinedMatchKey = key;
+        break;
+      }
+    }
+    
+    // URL con formato simple si es un partido predefinido
+    if (predefinedMatchKey) {
+      return `${window.location.origin}/${predefinedMatchKey}${showLive ? "-live" : ""}`;
+    }
+    
+    // Fallback al formato antiguo si no es un partido predefinido
+    // Formatear la fecha como YYYYMMDD
+    const year = matchData.date.getFullYear();
+    const month = String(matchData.date.getMonth() + 1).padStart(2, '0');
+    const day = String(matchData.date.getDate()).padStart(2, '0');
+    const dateStr = `${year}${month}${day}`;
+    
+    let urlParam = `${matchData.homeTeam}-${matchData.awayTeam}-${dateStr}`;
+    if (showLive) {
+      urlParam += "-live";
+    }
+    return `${window.location.origin}?match=${urlParam}`;
+  };
+
   const handlePreviewClick = () => {
     if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
       toast.error("Por favor, completa todos los campos");
       return;
     }
     setPreviewVisible(true);
+  };
+
+  const handleOpenInNewTab = () => {
+    if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
+      toast.error("Por favor, completa todos los campos");
+      return;
+    }
+    
+    const matchUrl = generateMatchUrl();
+    window.open(matchUrl, '_blank');
   };
 
   const handleBackToEdit = () => {
@@ -151,43 +191,11 @@ const Index = () => {
 
   const handleShareLink = () => {
     try {
-      // Buscar si hay un partido predefinido que coincida
-      let predefinedMatchKey = null;
-      for (const [key, match] of Object.entries(PREDEFINED_MATCHES)) {
-        if (match.homeTeam === matchData.homeTeam && match.awayTeam === matchData.awayTeam) {
-          predefinedMatchKey = key;
-          break;
-        }
-      }
-      
-      // URL con formato simple si es un partido predefinido
-      if (predefinedMatchKey) {
-        const matchUrl = `${window.location.origin}/${predefinedMatchKey}${showLive ? "-live" : ""}`;
-        navigator.clipboard.writeText(matchUrl).then(() => {
-          toast.success("Enlace copiado al portapapeles");
-          console.log("Generated URL for predefined match:", matchUrl);
-        }, () => {
-          toast.error("No se pudo copiar al portapapeles");
-        });
-        return;
-      }
-      
-      // Fallback al formato antiguo si no es un partido predefinido
-      // Formatear la fecha como YYYYMMDD
-      const year = matchData.date.getFullYear();
-      const month = String(matchData.date.getMonth() + 1).padStart(2, '0');
-      const day = String(matchData.date.getDate()).padStart(2, '0');
-      const dateStr = `${year}${month}${day}`;
-      
-      let urlParam = `${matchData.homeTeam}-${matchData.awayTeam}-${dateStr}`;
-      if (showLive) {
-        urlParam += "-live";
-      }
-      const matchUrl = `${window.location.origin}?match=${urlParam}`;
+      const matchUrl = generateMatchUrl();
       
       navigator.clipboard.writeText(matchUrl).then(() => {
         toast.success("Enlace copiado al portapapeles");
-        console.log("Generated URL with params:", matchUrl);
+        console.log("Generated URL:", matchUrl);
       }, () => {
         toast.error("No se pudo copiar al portapapeles");
       });
@@ -255,12 +263,19 @@ const Index = () => {
                   matchData={matchData}
                   setMatchData={setMatchData}
                 />
-                <div className="mt-8 flex justify-center">
+                <div className="mt-8 flex justify-center gap-4">
                   <Button 
                     onClick={handlePreviewClick}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2"
                   >
                     Previsualizar Imagen
+                  </Button>
+                  <Button 
+                    onClick={handleOpenInNewTab}
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-2"
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Abrir en Nueva Pestaña
                   </Button>
                 </div>
               </>
@@ -297,6 +312,13 @@ const Index = () => {
                   >
                     <Share2 className="w-4 h-4 mr-2" />
                     Compartir Enlace
+                  </Button>
+                  <Button 
+                    onClick={handleOpenInNewTab}
+                    className="bg-purple-600 hover:bg-purple-700 text-white"
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Abrir en Nueva Pestaña
                   </Button>
                 </div>
               </>
