@@ -1,5 +1,5 @@
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import { MatchData } from "@/types/match";
 import { getTeamById } from "@/data/sportsData";
 import html2canvas from "html2canvas";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Share2 } from "lucide-react";
 
 const Index = () => {
   const [matchData, setMatchData] = useState<MatchData>({
@@ -21,6 +23,64 @@ const Index = () => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [showLive, setShowLive] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Parse URL parameters on component mount
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const urlParams = searchParams.get("match");
+    
+    if (urlParams) {
+      try {
+        // Format should be homeTeam-awayTeam-date with optional -live suffix
+        const isLive = urlParams.endsWith("-live");
+        const paramString = isLive ? urlParams.slice(0, -5) : urlParams;
+        const parts = paramString.split("-");
+        
+        if (parts.length >= 2) {
+          const homeTeamId = parts[0];
+          const awayTeamId = parts[1];
+          
+          // Date is optional in the URL
+          let date = new Date();
+          if (parts.length >= 3) {
+            const dateStr = parts[2];
+            // Try to parse date if it looks like YYYYMMDD format
+            if (/^\d{8}$/.test(dateStr)) {
+              const year = parseInt(dateStr.substring(0, 4));
+              const month = parseInt(dateStr.substring(4, 6)) - 1;
+              const day = parseInt(dateStr.substring(6, 8));
+              date = new Date(year, month, day);
+            }
+          }
+          
+          // Update the match data if the team IDs are valid
+          const homeTeam = getTeamById(homeTeamId);
+          const awayTeam = getTeamById(awayTeamId);
+          
+          if (homeTeam && awayTeam) {
+            setMatchData(prev => ({
+              ...prev,
+              homeTeam: homeTeamId,
+              awayTeam: awayTeamId,
+              date
+            }));
+            
+            // If we have valid teams, show preview
+            setPreviewVisible(true);
+            
+            // Set live mode if specified
+            if (isLive) {
+              setShowLive(true);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing URL parameters:", error);
+      }
+    }
+  }, [location.search]);
 
   const handlePreviewClick = () => {
     if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
@@ -37,6 +97,35 @@ const Index = () => {
 
   const handleToggleLive = () => {
     setShowLive(!showLive);
+  };
+
+  const handleShareLink = () => {
+    try {
+      // Format the date as YYYYMMDD
+      const year = matchData.date.getFullYear();
+      const month = String(matchData.date.getMonth() + 1).padStart(2, '0');
+      const day = String(matchData.date.getDate()).padStart(2, '0');
+      const dateStr = `${year}${month}${day}`;
+      
+      // Create URL parameter
+      let urlParam = `${matchData.homeTeam}-${matchData.awayTeam}-${dateStr}`;
+      if (showLive) {
+        urlParam += "-live";
+      }
+      
+      // Create the full URL
+      const url = `${window.location.origin}${window.location.pathname}?match=${urlParam}`;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(url).then(() => {
+        toast.success("Enlace copiado al portapapeles");
+      }, () => {
+        toast.error("No se pudo copiar al portapapeles");
+      });
+    } catch (error) {
+      console.error("Error generating share link:", error);
+      toast.error("Error al generar enlace para compartir");
+    }
   };
 
   const handleDownload = async () => {
@@ -132,6 +221,13 @@ const Index = () => {
                     } text-white`}
                   >
                     {showLive ? "Quitar Live" : "Añadir Live"}
+                  </Button>
+                  <Button 
+                    onClick={handleShareLink}
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Compartir Enlace
                   </Button>
                 </div>
               </>
