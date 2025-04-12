@@ -154,17 +154,7 @@ const Index = () => {
     setPreviewVisible(true);
   };
 
-  const handleOpenInNewTab = () => {
-    if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
-      toast.error("Por favor, completa todos los campos");
-      return;
-    }
-    
-    const matchUrl = generateMatchUrl();
-    window.open(matchUrl, '_blank');
-  };
-
-  const handleOpenImageInNewTab = async () => {
+  const handleOpenInNewTab = async () => {
     if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
       toast.error("Por favor, completa todos los campos");
       return;
@@ -187,16 +177,29 @@ const Index = () => {
       tempContainer.style.top = '0';
       document.body.appendChild(tempContainer);
       
-      const clone = previewRef.current?.cloneNode(true) as HTMLElement;
-      if (!clone) {
-        throw new Error("No se pudo clonar el elemento de previsualización");
+      const previewElement = document.createElement('div');
+      previewElement.style.width = '1280px';
+      previewElement.style.height = '720px';
+      tempContainer.appendChild(previewElement);
+      
+      const tempMatchPreview = document.createElement('div');
+      tempMatchPreview.innerHTML = `<div class="w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
+        <div class="absolute inset-0 bg-cover bg-center z-0 opacity-100" style="background-image: url('/lovable-uploads/d5354129-c8d8-44f0-8c26-18c60a12a46e.png')"></div>
+        <div class="relative z-10 w-full h-full flex flex-col justify-between p-8">
+          <!-- Match content here -->
+        </div>
+      </div>`;
+      previewElement.appendChild(tempMatchPreview);
+      
+      if (previewRef.current) {
+        const clone = previewRef.current.cloneNode(true) as HTMLElement;
+        clone.style.width = '1280px';
+        clone.style.height = '720px';
+        previewElement.innerHTML = '';
+        previewElement.appendChild(clone);
       }
       
-      clone.style.width = '1280px';
-      clone.style.height = '720px';
-      tempContainer.appendChild(clone);
-      
-      const canvas = await html2canvas(clone, {
+      const canvas = await html2canvas(previewElement, {
         backgroundColor: null,
         scale: 2,
         logging: false,
@@ -214,10 +217,56 @@ const Index = () => {
           toast.error("Error al generar la imagen");
         }
       }, 'image/webp', 0.9);
-      
     } catch (error) {
       console.error("Error al generar imagen para nueva pestaña:", error);
       toast.error("Error al generar la imagen");
+    }
+  };
+
+  const handleOpenImageInNewTab = async () => {
+    if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
+      toast.error("Por favor, completa todos los campos");
+      return;
+    }
+    
+    try {
+      const homeTeam = getTeamById(matchData.homeTeam);
+      const awayTeam = getTeamById(matchData.awayTeam);
+      
+      if (!homeTeam || !awayTeam) {
+        toast.error("Error al obtener información de los equipos");
+        return;
+      }
+      
+      const fileName = `${homeTeam.name}-${awayTeam.name}.webp`;
+      
+      const canvas = await html2canvas(previewRef.current, {
+        backgroundColor: null,
+        scale: 2,
+        useCORS: true,
+        allowTaint: true
+      });
+      
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = fileName;
+            link.click();
+            URL.revokeObjectURL(url);
+            toast.success("Imagen descargada correctamente");
+          } else {
+            toast.error("Error al generar la imagen");
+          }
+        },
+        "image/webp",
+        0.9
+      );
+    } catch (error) {
+      console.error("Error al descargar la imagen:", error);
+      toast.error("Error al descargar la imagen");
     }
   };
 
@@ -319,13 +368,6 @@ const Index = () => {
                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-2"
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
-                    Abrir en Nueva Pestaña
-                  </Button>
-                  <Button 
-                    onClick={handleOpenImageInNewTab}
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-2"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
                     Abrir Imagen WebP
                   </Button>
                 </div>
