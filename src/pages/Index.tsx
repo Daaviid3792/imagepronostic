@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -10,9 +9,8 @@ import { MatchData } from "@/types/match";
 import { getTeamById } from "@/data/sportsData";
 import html2canvas from "html2canvas";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Share2, ExternalLink } from "lucide-react";
+import { Share2, ExternalLink, Download } from "lucide-react";
 
-// URLs predefinidas para partidos comunes
 const PREDEFINED_MATCHES = {
   "barcelona-realmadrid": {
     homeTeam: "barcelona",
@@ -54,18 +52,14 @@ const Index = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Parse URL path on component mount
   useEffect(() => {
-    // Extraer path sin el slash inicial
     const path = location.pathname.substring(1);
     console.log("Path detectado:", path);
     
-    // Verificar si el path coincide con un partido predefinido
     if (path && PREDEFINED_MATCHES[path]) {
       const matchConfig = PREDEFINED_MATCHES[path];
       console.log("Partido predefinido encontrado:", matchConfig);
       
-      // Verificar si el path incluye "-live"
       const isLive = path.endsWith("-live");
       const pathWithoutLive = isLive ? path.substring(0, path.length - 5) : path;
       
@@ -77,13 +71,11 @@ const Index = () => {
       }
     }
     
-    // Verificar si hay parámetros en la URL como método alternativo
     const params = new URLSearchParams(location.search);
     const matchParam = params.get("match");
     
     if (matchParam) {
       try {
-        // Verificar si termina con -live
         const isLive = matchParam.endsWith("-live");
         const paramString = isLive ? matchParam.slice(0, -5) : matchParam;
         const parts = paramString.split("-");
@@ -94,14 +86,12 @@ const Index = () => {
           const homeTeamId = parts[0];
           const awayTeamId = parts[1];
           
-          // Fecha opcional en la URL
           let date = new Date();
           if (parts.length >= 3) {
             const dateStr = parts[2];
-            // Intentar parsear fecha si tiene formato YYYYMMDD
             if (/^\d{8}$/.test(dateStr)) {
               const year = parseInt(dateStr.substring(0, 4));
-              const month = parseInt(dateStr.substring(4, 6)) - 1; // 0-11 en JS
+              const month = parseInt(dateStr.substring(4, 6)) - 1;
               const day = parseInt(dateStr.substring(6, 8));
               date = new Date(year, month, day);
             }
@@ -132,7 +122,6 @@ const Index = () => {
   }, [location]);
 
   const generateMatchUrl = () => {
-    // Buscar si hay un partido predefinido que coincida
     let predefinedMatchKey = null;
     for (const [key, match] of Object.entries(PREDEFINED_MATCHES)) {
       if (match.homeTeam === matchData.homeTeam && match.awayTeam === matchData.awayTeam) {
@@ -141,13 +130,10 @@ const Index = () => {
       }
     }
     
-    // URL con formato simple si es un partido predefinido
     if (predefinedMatchKey) {
       return `${window.location.origin}/${predefinedMatchKey}${showLive ? "-live" : ""}`;
     }
     
-    // Fallback al formato antiguo si no es un partido predefinido
-    // Formatear la fecha como YYYYMMDD
     const year = matchData.date.getFullYear();
     const month = String(matchData.date.getMonth() + 1).padStart(2, '0');
     const day = String(matchData.date.getDate()).padStart(2, '0');
@@ -178,10 +164,75 @@ const Index = () => {
     window.open(matchUrl, '_blank');
   };
 
+  const handleOpenImageInNewTab = async () => {
+    if (!matchData.homeTeam || !matchData.awayTeam || !matchData.competition) {
+      toast.error("Por favor, completa todos los campos");
+      return;
+    }
+    
+    const tempDiv = document.createElement('div');
+    tempDiv.style.position = 'fixed';
+    tempDiv.style.left = '-9999px';
+    document.body.appendChild(tempDiv);
+    
+    try {
+      const homeTeam = getTeamById(matchData.homeTeam);
+      const awayTeam = getTeamById(matchData.awayTeam);
+      
+      if (!homeTeam || !awayTeam) {
+        toast.error("Error al obtener información de los equipos");
+        document.body.removeChild(tempDiv);
+        return;
+      }
+      
+      const root = document.createElement('div');
+      root.style.width = '1280px';
+      root.style.height = '720px';
+      tempDiv.appendChild(root);
+      
+      root.className = "w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 text-white relative";
+      
+      const previewHTML = `
+        <div class="absolute inset-0 bg-cover bg-center z-0 opacity-100" 
+             style="background-image: url('/lovable-uploads/d5354129-c8d8-44f0-8c26-18c60a12a46e.png')"></div>
+        <div class="relative z-10 w-full h-full flex flex-col justify-between p-8">
+          <!-- Match content will be rendered here by the html2canvas -->
+        </div>
+      `;
+      root.innerHTML = previewHTML;
+      
+      const tempPreview = document.createElement('div');
+      tempPreview.style.width = '1280px'; 
+      tempPreview.style.height = '720px';
+      tempDiv.appendChild(tempPreview);
+      
+      tempPreview.innerHTML = `<div id="match-preview-temp"></div>`;
+      
+      const canvas = await html2canvas(previewRef.current || document.createElement('div'), {
+        backgroundColor: null,
+        scale: 2,
+      });
+      
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          window.open(url, '_blank');
+        } else {
+          toast.error("Error al generar la imagen");
+        }
+      }, 'image/webp', 0.9);
+      
+    } catch (error) {
+      console.error("Error al generar imagen para nueva pestaña:", error);
+      toast.error("Error al generar la imagen");
+    } finally {
+      document.body.removeChild(tempDiv);
+    }
+  };
+
   const handleBackToEdit = () => {
     setPreviewVisible(false);
     setShowLive(false);
-    // Limpiar la URL al volver a editar
     navigate("/", { replace: true });
   };
 
@@ -221,7 +272,7 @@ const Index = () => {
       
       const canvas = await html2canvas(previewRef.current, {
         backgroundColor: null,
-        scale: 2, // mejor calidad
+        scale: 2,
       });
       
       canvas.toBlob(
@@ -240,7 +291,7 @@ const Index = () => {
         },
         "image/webp",
         0.9
-      ); // 0.9 = 90% de calidad
+      );
     } catch (error) {
       console.error("Error al descargar la imagen:", error);
       toast.error("Error al descargar la imagen");
@@ -263,7 +314,7 @@ const Index = () => {
                   matchData={matchData}
                   setMatchData={setMatchData}
                 />
-                <div className="mt-8 flex justify-center gap-4">
+                <div className="mt-8 flex flex-wrap justify-center gap-4">
                   <Button 
                     onClick={handlePreviewClick}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2"
@@ -276,6 +327,13 @@ const Index = () => {
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Abrir en Nueva Pestaña
+                  </Button>
+                  <Button 
+                    onClick={handleOpenImageInNewTab}
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-2"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Abrir Imagen WebP
                   </Button>
                 </div>
               </>
@@ -314,11 +372,11 @@ const Index = () => {
                     Compartir Enlace
                   </Button>
                   <Button 
-                    onClick={handleOpenInNewTab}
+                    onClick={handleOpenImageInNewTab}
                     className="bg-purple-600 hover:bg-purple-700 text-white"
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Abrir en Nueva Pestaña
+                    <Download className="w-4 h-4 mr-2" />
+                    Abrir Imagen WebP
                   </Button>
                 </div>
               </>
